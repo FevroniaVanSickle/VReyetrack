@@ -1,3 +1,8 @@
+# moves and calibrates .mp4 video according to user specifications
+# goal: eye tracking analysis
+# author: Fevronia Van Sickle
+# version: 3/39/23
+
 import os
 import shutil
 import tkinter as tk
@@ -5,13 +10,14 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
 
-
+#Gui to analyse eye tracking 
 class RollOutMethodInterface(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
         #set window configurations
-        self.geometry("600x500+430+200")
+        # widthxheightxhorizontalxvertical
+        self.geometry("700x550+430+200")
         self.title("Roll Out Method Gui")
 
         # # Create a style
@@ -42,7 +48,7 @@ class RollOutMethodInterface(tk.Tk):
         if messagebox.askyesno(message="Continue to quit?"):
             self.destroy()
 
-
+# first page
 class HomePage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -100,15 +106,12 @@ class HomePage(tk.Frame):
             title='Selected File',
             message=filePath
         )
-
-        # self.path = os.path.dirname(filePath)
         self.path = filePath
 
         # place videoFile into Eyetrack Folder
         self.newFolder()
 
-       # adds new folder to user desktop and places video inside
-
+    # adds new folder to user desktop and places video inside
     def newFolder(self):
 
         # creates new folder
@@ -133,10 +136,7 @@ class HomePage(tk.Frame):
         print(newVideoPath)
         shutil.move(oldVideoPath, newVideoPath)
 
-    
-
-
-
+# second page
 class CalibrationPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
@@ -144,11 +144,50 @@ class CalibrationPage(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
-        self.title_label = tk.Label(self, text="Calibration Page")
-        self.title_label.pack()
-        self.home_button = tk.Button(self, text="Go to Home Page", command=lambda: self.controller.show_frame(HomePage))
+        self.title_label = ttk.Label(self, text="Calibration Page")
+         # welcome text and file instructions
+        choicesLabel = ttk.Label(self, text="Video Stills Settings", font=(
+            'Times New Roman', 27))
+        choicesLabel.pack(side='top', anchor='w', pady = 20, padx=10)
+
+        instructionLabel1 = ttk.Label(self, text="You may find that cropping your video stills vertically and flipping them horizontally to be helpful \n Please select if you would like to do so.", font=(
+            'Times New Roman', 15))
+        instructionLabel1.pack(side='top', anchor='w', pady = 40, padx=10)
+
+        #choices
+        instructionLabel2 = ttk.Label(self, text="Would you like your images cropped or flipped?", font=(
+            'Times New Roman', 15))
+        instructionLabel2.pack(side='top', anchor='w', padx=10)
+
+        self.checkState1 = tk.IntVar()
+        self.check1 = tk.Checkbutton(self, text="crop video", font=(
+            'Times New Roman', 16), variable=self.checkState1)
+        self.check1.pack(padx=10, pady=10)
+
+        self.checkState2 = tk.IntVar()
+        self.check2 = tk.Checkbutton(self, text="flip video", font=(
+            'Times New Roman', 16), variable=self.checkState2)
+        self.check2.pack(padx=10, pady=10)
+
+        instructionLabel3 = ttk.Label(self, text="Our code is set to split the video into stills at 0.5 second intervals.\nPlease select the interval you would like to use.", font=(
+            'Times New Roman', 15))
+        instructionLabel3.pack(side='top', anchor='w', padx=10)
+
+        # go back button 
+        self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(HomePage))
         self.home_button.pack()
 
+    def checkCropBool(self):
+        if self.check_state1.get() == 0:
+            self.cropBool = 0
+        else:
+            self.cropBool = 1
+
+    def checkFlipBool(self):
+        if self.check_state2.get() == 0:
+            self.flipBool = 0
+        else:
+            self.flipBool = 1
 
 appROM = RollOutMethodInterface()
 appROM.mainloop()
