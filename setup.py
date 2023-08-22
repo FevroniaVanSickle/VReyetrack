@@ -16,13 +16,14 @@ setup(
     author="FevroniaVanSickle",
     license="MIT",
     classifiers=[
-                "License :: OSI Approved :: MIT License"
+                "License :: OSI Approved :: MIT License",
                 "Programming Language :: Python :: 3.11",
                 "Operating System :: OS Independent"],
-    install_requires=["matplotlib >=3.5", "opencv-python >=4.5", "shapely >=2", "Pillow >=9.5", "labelme >=5.0"],
+    install_requires=["matplotlib >= 3.5", "opencv-python >= 4.5", "shapely >= 2", "Pillow >= 9.5", "labelme >= 5.0"],
     extras_require={
         "dev": ["pytest>=7.0", "twine>=4.0.2"]
     },
-    python_requires=">=3.10"
+    python_requires=">=3.10",
+    entry_points={"console_scripts": ["rolloutmethod= RollOutGui.rolloutmethod:main"]},
 
 )
