@@ -26,6 +26,7 @@ setup(
     python_requires=">=3.10",
     # entry_points={
     # "console_scripts": ["rolloutmethod=RollOutGui.src.rolloutmethod:main"]
-    entry_points={"console_scripts": ["rolloutmethod=app.RollOutGui.src.rolloutmethod:main"]}
+    entry_points={"console_scripts": ["rolloutmethod=RollOutGui.main:main"]}
+
 
 )

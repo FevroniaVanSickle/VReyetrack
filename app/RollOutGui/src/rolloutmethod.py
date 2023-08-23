@@ -540,9 +540,3 @@ class TadaPage(tk.Frame):
         subprocess.run(["python3", "compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
         # subprocess.run(["python3", "compare_eye_anno.py", interval])
 
-def main():
-    appROM = RollOutMethodInterface()
-    appROM.mainloop()
-
-if __name__ == "__main__":
-    main()
