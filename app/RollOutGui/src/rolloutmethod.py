@@ -10,7 +10,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
 import subprocess
-from app.RollOutGui.src import class_process_video
+from . import class_process_video
 
 
 #Gui to analyse eye tracking 
