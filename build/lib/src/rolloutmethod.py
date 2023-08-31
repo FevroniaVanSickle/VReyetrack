@@ -9,8 +9,8 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
-import class_process_video
 import subprocess
+from . import class_process_video
 
 
 #Gui to analyse eye tracking 
@@ -540,9 +540,3 @@ class TadaPage(tk.Frame):
         subprocess.run(["python3", "compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
         # subprocess.run(["python3", "compare_eye_anno.py", interval])
 
-def main():
-    appROM = RollOutMethodInterface()
-    appROM.mainloop()
-
-if __name__ == "__main__":
-    main()

@@ -1,15 +1,15 @@
 from setuptools import find_packages, setup
 
 #using readme file to populate description
-with open("app/README.md", "r") as f:
+with open("README.md", "r") as f:
     long_description = f.read()
 
 setup(
     name="RollOutGui",
     version="0.0.1",
     description="A graphical user interface that analyzes eye movements per video frame",
-    package_dir={"":"app"},
-    packages=find_packages(where="app"),
+    package_dir={"":"RollOutGui"},
+    packages=find_packages(where="RollOutGui"),
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/thebearslab/VReyetrack",
