@@ -1,7 +1,7 @@
 # moves and calibrates .mp4 video according to user specifications
 # goal: eye tracking analysis
 # author: Fevronia Van Sickle
-# version: 6/3/23
+# version: 9/13/23
 
 import os
 import shutil
@@ -10,7 +10,8 @@ from tkinter import ttk
 from tkinter import messagebox
 from tkinter import filedialog
 import subprocess
-from . import class_process_video
+from . import class_process_video, process, compare_eye_anno
+
 
 
 #Gui to analyse eye tracking 
@@ -19,13 +20,8 @@ class RollOutMethodInterface(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
 
         #set window configurations
-        # widthxheightxhorizontalxvertical
         self.geometry("700x550+430+200")
         self.title("Roll Out Method Gui")
-
-        # # Create a style
-        # style = ttk.Style()
-        # style.theme_use('clam')
 
         #create container for windows on top of the root
         container = tk.Frame(self)
@@ -40,7 +36,7 @@ class RollOutMethodInterface(tk.Tk):
         self.show_frame(HomePage)
 
         # ask user if they want to exit the application
-        # self.protocol("WM_DELETE_WINDOW", self.onClosing)
+        self.protocol("WM_DELETE_WINDOW", self.onClosing)
 
     def show_frame(self, cont):
         frame = self.frames[cont]
@@ -105,13 +101,6 @@ class CalibrationPage(tk.Frame):
 
     def create_widgets(self):
 
-
-        # # go back button 
-        # self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(HomePage))
-        # self.home_button.pack()
-
-        # self.title_label = tk.Label(self, text="Calibration Page")
-        
         # welcome text and file instructions
         choicesLabel = tk.Label(self, text="Video Stills Creation", font=(
             'Times New Roman', 27))
@@ -133,11 +122,6 @@ class CalibrationPage(tk.Frame):
             self, text="Select .xml File", command=self.selectXMLFile)
         # selectFileButton.place(x=20, y=120)
         selectFileButton.pack(side='top', anchor='w', pady = 0, padx=10)
-
-
-        # instructionLabel1 = tk.Label(self, text="You may find that cropping your video stills vertically and flipping them horizontally to be helpful \n Please select if you would like to do so.", font=(
-        #     'Times New Roman', 15))
-        # instructionLabel1.pack(side='top', anchor='w', pady = 40, padx=10)
 
         #choices
         instructionLabel2 = tk.Label(self, text="Would you like your images cropped or flipped?", font=(
@@ -169,13 +153,11 @@ class CalibrationPage(tk.Frame):
         # nextLabel.place(x=20, y=200)
         nextLabel.pack(side='top', anchor='w', pady = 5, padx=10)
 
-
         self.processVideoButton = tk.Button(self, text="Process Video", command=self.controlSettings)
         self.processVideoButton.pack()
 
         instructionLabel2 = tk.Label(self, text="Your video, data, and stills will appear inside the 'Eyetrack' folder on your desktop. \n Please allow time for the folder to populate.", font=(
             'Times New Roman', 15))
-        # instructionLabel2.place(x=20, y=180)
         instructionLabel2.pack(side='top', anchor='w', padx=10)
 
         #goes to next page
@@ -385,12 +367,6 @@ class TadaPage(tk.Frame):
             'Times New Roman', 27))
         choicesLabel.pack(side='top', anchor='w', pady = 20, padx=10)
 
-
-        # instructionLabel1 = tk.Label(self, text="Calculate the hitting points. \n This will produce a csv table of x,y coordinates from participant eye tracking data", font=(
-        #     'Times New Roman', 15))
-        # # instructionLabel2.place(x=20, y=180)
-        # instructionLabel1.pack(side='top', anchor='w')
-
         instructionLabel1 = tk.Label(self, text="Select the 'data' directory from within Desktop/Eyetrack", font=(
             'Times New Roman', 15))
         # instructionLabel1.place(x=20, y=80)
@@ -451,10 +427,6 @@ class TadaPage(tk.Frame):
         self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(CalibrationPage))
         self.home_button.pack(side='top', anchor='w', pady = 10, padx=10)
 
-        # #next button
-        # self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(TadaPage))
-        # self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
-        
         #home button
         self.nextButton = tk.Button(self, text="Home", command=lambda: self.controller.show_frame(HomePage))
         self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
