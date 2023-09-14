@@ -390,15 +390,15 @@ class TadaPage(tk.Frame):
         selectFileButton2.pack(side='top', anchor='w', pady = 10, padx=10)
 
         # SELECT end image directory
-        instructionLabel3 = tk.Label(self, text="Select a directory for the analysis frames to be placed", font=(
+        instructionLabel3 = tk.Label(self, text="Analysis Frames will be found in Data > pics folder", font=(
             'Times New Roman', 15))
         # instructionLabel1.place(x=20, y=80)
         instructionLabel3.pack(side='top', anchor='w', padx=10)
 
-        selectFileButton3 = tk.Button(
-            self, text="Select image results folder", command=self.selectEndImageFolder)
-        # selectFileButton.place(x=20, y=120)
-        selectFileButton3.pack(side='top', anchor='w', pady = 10, padx=10)
+        # selectFileButton3 = tk.Button(
+        #     self, text="Select image results folder", command=self.selectEndImageFolder)
+        # # selectFileButton.place(x=20, y=120)
+        # selectFileButton3.pack(side='top', anchor='w', pady = 10, padx=10)
 
         # SELECT 2D hitting points csv table
         instructionLabel4 = tk.Label(self, text="Select the csv table containing 2D hitting points located within new participant xyz folder", font=(
@@ -462,20 +462,20 @@ class TadaPage(tk.Frame):
         self.framesPath = filepath
         print(self.framesPath)
     
-    #get EndImage folder
-    def selectEndImageFolder(self):
+    # #get EndImage folder
+    # def selectEndImageFolder(self):
 
-        # open file dialog to select videoFile
-        filepath = filedialog.askdirectory()
+    #     # open file dialog to select videoFile
+    #     filepath = filedialog.askdirectory()
 
-        # show what was selected
-        messagebox.showinfo(
-            title='Selected folder',
-            message=filepath
-        )
+    #     # show what was selected
+    #     messagebox.showinfo(
+    #         title='Selected folder',
+    #         message=filepath
+    #     )
 
-        self.endImagePath = filepath
-        print(self.endImagePath)
+    #     self.endImagePath = filepath
+    #     print(self.endImagePath)
 
     # select the directory holding the video file
     def selectCSVFile(self):
