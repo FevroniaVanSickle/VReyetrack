@@ -128,14 +128,14 @@ def transform_to_equirectangular(point, geo_w, geo_h, color):
 
     return [geo_x_px, geo_y_px]
 
-print("sys.argv:", sys.argv)
+print("while compiling sys.argv:", sys.argv)
 
 if len(sys.argv) < 2:
-    print("Usage: python3 process.py")
-    sys.exit(1)
-
-dirname = sys.argv[1] # PUF WSU DATA see readme folder structure, dir should contain 001 002
-print ("the folder has the name %s" % (dirname))
+    print("loader doesn't have access to correct destination")
+    # sys.exit(1)
+else:    
+    dirname = sys.argv[1] # PUF WSU DATA see readme folder structure, dir should contain 001 002
+    print ("the folder has the name %s" % (dirname))
 
 tobii_folder_name = 'Eye_Data'
 tobii_path = ''
