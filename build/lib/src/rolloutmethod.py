@@ -468,20 +468,20 @@ class TadaPage(tk.Frame):
         self.framesPath = filepath
         print(self.framesPath)
     
-    # #get EndImage folder
-    # def selectEndImageFolder(self):
+    #get EndImage folder
+    def selectEndImageFolder(self):
 
-    #     # open file dialog to select videoFile
-    #     filepath = filedialog.askdirectory()
+        # open file dialog to select videoFile
+        filepath = filedialog.askdirectory()
 
-    #     # show what was selected
-    #     messagebox.showinfo(
-    #         title='Selected folder',
-    #         message=filepath
-    #     )
+        # show what was selected
+        messagebox.showinfo(
+            title='Selected folder',
+            message=filepath
+        )
 
-    #     self.endImagePath = filepath
-    #     print(self.endImagePath)
+        self.endImagePath = filepath
+        print(self.endImagePath)
 
     # select the directory holding the video file
     def selectCSVFile(self):
