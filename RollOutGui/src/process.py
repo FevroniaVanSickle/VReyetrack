@@ -128,55 +128,98 @@ def transform_to_equirectangular(point, geo_w, geo_h, color):
 
     return [geo_x_px, geo_y_px]
 
-print("while compiling sys.argv:", sys.argv)
+print("before catch sys.argv:", sys.argv)
 
 if len(sys.argv) < 2:
     print("loader doesn't have access to correct destination")
     # sys.exit(1)
 else:    
+    print("after catch sys.argv:", sys.argv)
     dirname = sys.argv[1] # PUF WSU DATA see readme folder structure, dir should contain 001 002
     print ("the folder has the name %s" % (dirname))
 
-tobii_folder_name = 'Eye_Data'
-tobii_path = ''
-participants_files = os.listdir(dirname)
-for par_id in participants_files:
-    # files are 001, 002
-    if len(par_id) == 3:
-        single_par_folder = os.listdir(dirname + '/' + par_id)
-        for single_file in single_par_folder:
-            if tobii_folder_name in single_file:
-                tobii_path = dirname  + '/' + par_id + '/' + single_file
-                # create folder for coordinate on 2d image
-                os.mkdir(tobii_path + '_XYZ')
-                print('current in : '+tobii_path)
-                file_list = os.listdir(tobii_path)
-                # print('This folder has ', file_list, ' files.')
+    ############################
+    tobii_folder_name = 'Eye_Data'
+    tobii_path = ''
+    participants_files = os.listdir(dirname)
+    for par_id in participants_files:
+        # files are 001, 002
+        if len(par_id) == 3:
+            single_par_folder = os.listdir(dirname + '/' + par_id)
+            for single_file in single_par_folder:
+                if tobii_folder_name in single_file:
+                    tobii_path = dirname  + '/' + par_id + '/' + single_file
+                    # create folder for coordinate on 2d image
+                    os.mkdir(tobii_path + '_XYZ')
+                    print('current in : '+tobii_path)
+                    file_list = os.listdir(tobii_path)
+                    # print('This folder has ', file_list, ' files.')
 
-                for file_name in file_list:
-                    if 'xml' in file_name:
-                        f = open(tobii_path +'_XYZ'+ '/'+file_name.split('.')[0] + '.csv', 'w',  encoding="utf-8")
-                        writer = csv.writer(f)
+                    for file_name in file_list:
+                        if 'xml' in file_name:
+                            f = open(tobii_path +'_XYZ'+ '/'+file_name.split('.')[0] + '.csv', 'w',  encoding="utf-8")
+                            writer = csv.writer(f)
 
-                        tree = ET.parse(tobii_path + '/'+file_name)
-                        root = tree.getroot()
+                            tree = ET.parse(tobii_path + '/'+file_name)
+                            root = tree.getroot()
 
-                        for child in root:
-                            timestamp = child.attrib['TimeStamp']
-                            for c in child:
+                            for child in root:
+                                timestamp = child.attrib['TimeStamp']
+                                for c in child:
 
-                                if 'CombinedGazeRayWorld' in c.tag:
-                                    str_list = c.attrib['Direction'][1:-1].split(', ')
-                                    combined_ray = np.array([0.0, 0.0, 0.0])
-                                    for m in range(3):
-                                        combined_ray[m] = str_list[m]
-                                    hitpoint_2d = get_hit_point_draw(combined_ray, 'g')
-                                    projPoint_w = transform_to_equirectangular(hitpoint_2d, 3840, 1080, 'g')
-                                    writer.writerow([timestamp, str(projPoint_w[0]), str(projPoint_w[1])])
+                                    if 'CombinedGazeRayWorld' in c.tag:
+                                        str_list = c.attrib['Direction'][1:-1].split(', ')
+                                        combined_ray = np.array([0.0, 0.0, 0.0])
+                                        for m in range(3):
+                                            combined_ray[m] = str_list[m]
+                                        hitpoint_2d = get_hit_point_draw(combined_ray, 'g')
+                                        projPoint_w = transform_to_equirectangular(hitpoint_2d, 3840, 1080, 'g')
+                                        writer.writerow([timestamp, str(projPoint_w[0]), str(projPoint_w[1])])
 
-                        f.close()
+                            f.close()
 
 print('All finish')
+   
+# tobii_folder_name = 'Eye_Data'
+# tobii_path = ''
+# participants_files = os.listdir(dirname)
+# for par_id in participants_files:
+#     # files are 001, 002
+#     if len(par_id) == 3:
+#         single_par_folder = os.listdir(dirname + '/' + par_id)
+#         for single_file in single_par_folder:
+#             if tobii_folder_name in single_file:
+#                 tobii_path = dirname  + '/' + par_id + '/' + single_file
+#                 # create folder for coordinate on 2d image
+#                 os.mkdir(tobii_path + '_XYZ')
+#                 print('current in : '+tobii_path)
+#                 file_list = os.listdir(tobii_path)
+#                 # print('This folder has ', file_list, ' files.')
+
+#                 for file_name in file_list:
+#                     if 'xml' in file_name:
+#                         f = open(tobii_path +'_XYZ'+ '/'+file_name.split('.')[0] + '.csv', 'w',  encoding="utf-8")
+#                         writer = csv.writer(f)
+
+#                         tree = ET.parse(tobii_path + '/'+file_name)
+#                         root = tree.getroot()
+
+#                         for child in root:
+#                             timestamp = child.attrib['TimeStamp']
+#                             for c in child:
+
+#                                 if 'CombinedGazeRayWorld' in c.tag:
+#                                     str_list = c.attrib['Direction'][1:-1].split(', ')
+#                                     combined_ray = np.array([0.0, 0.0, 0.0])
+#                                     for m in range(3):
+#                                         combined_ray[m] = str_list[m]
+#                                     hitpoint_2d = get_hit_point_draw(combined_ray, 'g')
+#                                     projPoint_w = transform_to_equirectangular(hitpoint_2d, 3840, 1080, 'g')
+#                                     writer.writerow([timestamp, str(projPoint_w[0]), str(projPoint_w[1])])
+
+#                         f.close()
+
+# print('All finish')
 
 
 
