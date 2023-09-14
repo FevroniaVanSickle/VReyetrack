@@ -5,6 +5,7 @@
 
 import os
 import shutil
+import sys
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
@@ -444,7 +445,11 @@ class TadaPage(tk.Frame):
         )
         self.dataFolderPath = filepath
 
-        subprocess.run(["python3", "process.py", self.dataFolderPath])
+        if (self.dataFolderPath != None):
+            subprocess.run(["python3", "process.py", self.dataFolderPath])
+        else:
+            print("rolloutmethod no value in self.dataFolderPath")
+            # sys.exit(1)
         
 
     # get Frame Folder
