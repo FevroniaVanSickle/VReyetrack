@@ -391,15 +391,15 @@ class TadaPage(tk.Frame):
         selectFileButton2.pack(side='top', anchor='w', pady = 10, padx=10)
 
         # SELECT end image directory
-        instructionLabel3 = tk.Label(self, text="Analysis Frames will be found in Data > pics folder", font=(
+        instructionLabel3 = tk.Label(self, text="Select folder to place analyzed photos in", font=(
             'Times New Roman', 15))
         # instructionLabel1.place(x=20, y=80)
         instructionLabel3.pack(side='top', anchor='w', padx=10)
 
-        # selectFileButton3 = tk.Button(
-        #     self, text="Select image results folder", command=self.selectEndImageFolder)
-        # # selectFileButton.place(x=20, y=120)
-        # selectFileButton3.pack(side='top', anchor='w', pady = 10, padx=10)
+        selectFileButton3 = tk.Button(
+            self, text="Select image results folder", command=self.selectEndImageFolder)
+        # selectFileButton.place(x=20, y=120)
+        selectFileButton3.pack(side='top', anchor='w', pady = 10, padx=10)
 
         # SELECT 2D hitting points csv table
         instructionLabel4 = tk.Label(self, text="Select the csv table containing 2D hitting points located within new participant xyz folder", font=(
@@ -513,7 +513,10 @@ class TadaPage(tk.Frame):
         interval *= 100000
         interval = str(interval)
         
-
+        self.endImagePath = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001'
+        self.framesPath = '/Users/fevroniavansickle/Desktop/EyeTrack/flip'
+        self.csvFilePath = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001_XYZ/vr_data_20190321T162213 copy.csv'
+        interval ='50000'
         #calculate results
         subprocess.run(["python3", "compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
         # subprocess.run(["python3", "compare_eye_anno.py", interval])

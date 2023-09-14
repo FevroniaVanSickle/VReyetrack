@@ -100,14 +100,17 @@ def convert_to_box(points):
 # pics_folder_path = sys.argv[4]
 # print ("the pics_folder_path has the name %s" % (pics_folder_path))
 
-interval = 500000 # half second
+interval = sys.argv[1] #500000 # half second
 count = 0
 # datafile is the path of eye tracking file that has 2d hitting points
-datafile = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001_XYZ/vr_data_20190321T162213 copy.csv'
+datafile = sys.argv[2]
+#'/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001_XYZ/vr_data_20190321T162213 copy.csv'
 # folder path that contains image and json of annotation
-annot_dir_curr = '/Users/fevroniavansickle/Desktop/EyeTrack/flip'
+annot_dir_curr = sys.argv[3]
+#'/Users/fevroniavansickle/Desktop/EyeTrack/flip'
 # folder to generate pics
-pics_folder_path = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001'
+pics_folder_path = sys.argv[4]
+#'/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001'
 
 
 # we pause the video from start1 to end1 and start2 to end2
