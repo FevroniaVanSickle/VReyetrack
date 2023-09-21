@@ -1,2 +1,2 @@
 [console_scripts]
-rolloutmethod = RollOutGui.src.main:main
+rolloutmethod = src.main:main

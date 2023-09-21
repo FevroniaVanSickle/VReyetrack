@@ -24,7 +24,7 @@ setup(
         "dev": ["pytest>=7.0", "twine>=4.0.2"]
     },
     python_requires=">=3.10",
-    entry_points={"console_scripts": ["rolloutmethod=RollOutGui.src.main:main"]}
+    entry_points={"console_scripts": ["rolloutmethod=src.main:main"]}
 
 
 
