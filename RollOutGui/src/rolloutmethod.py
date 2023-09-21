@@ -513,11 +513,7 @@ class TadaPage(tk.Frame):
         interval *= 100000
         interval = str(interval)
         
-        self.endImagePath = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001'
-        self.framesPath = '/Users/fevroniavansickle/Desktop/EyeTrack/flip'
-        self.csvFilePath = '/Users/fevroniavansickle/Desktop/EyeTrack/Data/001/Eye_Data_001_XYZ/vr_data_20190321T162213 copy.csv'
-        interval ='50000'
+
         #calculate results
         subprocess.run(["python3", "compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
-        # subprocess.run(["python3", "compare_eye_anno.py", interval])
 
