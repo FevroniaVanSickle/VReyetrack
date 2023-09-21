@@ -1,4 +1,4 @@
-from RollOutGui.src.rolloutmethod import RollOutMethodInterface
+from src.rolloutmethod import RollOutMethodInterface
 
 def main():
     appROM = RollOutMethodInterface()
