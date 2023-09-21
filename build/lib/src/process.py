@@ -8,8 +8,7 @@ import os
 
 import xml.etree.ElementTree as ET
 import math
-# from . import sphere
-import RollOutGui.src.sphere
+from . import sphere
 # geom3 adopted from https://github.com/phire/Python-Ray-tracer
 # from geom3 import Vector3, Point3, Ray3, dot, unit
 from . import geom3 
