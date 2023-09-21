@@ -10,7 +10,6 @@ RollOutGui/RollOutGui.egg-info/top_level.txt
 RollOutGui/src/__init__.py
 RollOutGui/src/class_process_video.py
 RollOutGui/src/compare_eye_anno.py
-RollOutGui/src/eye_gaze_processing.py
 RollOutGui/src/geom3.py
 RollOutGui/src/main.py
 RollOutGui/src/process.py

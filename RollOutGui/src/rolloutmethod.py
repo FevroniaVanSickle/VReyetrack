@@ -513,7 +513,22 @@ class TadaPage(tk.Frame):
         interval *= 100000
         interval = str(interval)
         
+        try:
+        # if (self.csvFilePath.contains("main.py")):
+        #     print("this is the loader hi")
+        
+        # elif (self.framesPath.contains("main.p")):
+        #     print("this is the loader hi")
+        
+        # elif (self.endImagePath.contains("main.py")):
+        #     print("this is the loader hi")
+        # else:
+            #calculate results
+            subprocess.run(["python3", "compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
 
-        #calculate results
-        subprocess.run(["python3", "compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
+        except:
+            print("loading")
+
+        finally:
+            subprocess.run(["python3", "compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
 

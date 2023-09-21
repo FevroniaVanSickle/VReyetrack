@@ -166,7 +166,7 @@ for key, value in time_eye_dict.items():
 
     ##############  generating pics to check, delete it if you don't need
     flag_img = False
-    if os.path.exists(pics_folder_path + '_pics/'+curr_img+'.png') == False:
+    if os.path.exists(pics_folder_path + '_results/'+curr_img+'.png') == False:
 
         flag_img = True
         plt.figure()
@@ -213,7 +213,7 @@ for key, value in time_eye_dict.items():
     ######## generating pics to check, delete it if you don't need
     if flag_img ==True:
 
-        plt.savefig(pics_folder_path + '_pics/' +curr_img + '.png')
+        plt.savefig(pics_folder_path + '_results/' +curr_img + '.png')
         plt.close(fig)
         plt.cla()
         plt.close('all')
