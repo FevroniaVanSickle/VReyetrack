@@ -524,11 +524,11 @@ class TadaPage(tk.Frame):
         #     print("this is the loader hi")
         # else:
             #calculate results
-            subprocess.run(["python3", "compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
+            subprocess.run(["python3", "RollOutGui/src/compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
 
         except:
             print("loading")
 
         finally:
-            subprocess.run(["python3", "compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
+            subprocess.run(["python3", "RollOutGui/src/compare_eye_anno.py", interval, self.csvFilePath, self.framesPath, self.endImagePath])
 
