@@ -1,4 +1,5 @@
 labelme>=5.3
+pandas>=2
 tk
 matplotlib>=3.5
 opencv-python>=4.5
