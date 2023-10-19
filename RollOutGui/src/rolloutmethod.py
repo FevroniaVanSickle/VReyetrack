@@ -448,7 +448,7 @@ class TadaPage(tk.Frame):
         #make sure correct Data folder is chosen 
         if (self.dataFolderPath.__contains__("Data")):
             print("passing data folder to process.py at line 450")
-            subprocess.run(["python3", "VReyetrack-main/RollOutGui/src/process.py", self.dataFolderPath])
+            subprocess.run(["python3", "src/process.py", self.dataFolderPath])
         else:
             print("Please select the data folder ")
             # sys.exit(1)
@@ -525,11 +525,11 @@ class TadaPage(tk.Frame):
         #     print("this is the loader hi")
         # else:
             #calculate results
-            subprocess.run(["python3", "RollOutGui/src/compare_eye_anno.py", interval, self.csvFilePath, self.framesPath])
+            subprocess.run(["python3", "src/compare_eye_anno.py", interval, self.csvFilePath, self.framesPath])
 
         except:
             print("loading")
 
         finally:
-            subprocess.run(["python3", "RollOutGui/src/compare_eye_anno.py", interval, self.csvFilePath, self.framesPath])
+            subprocess.run(["python3", "src/compare_eye_anno.py", interval, self.csvFilePath, self.framesPath])
 
