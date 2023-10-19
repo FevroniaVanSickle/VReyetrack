@@ -19,11 +19,11 @@ setup(
                 "License :: OSI Approved :: MIT License",
                 "Programming Language :: Python :: 3.11",
                 "Operating System :: OS Independent"],
-    install_requires=["labelme >= 5.3", "pandas >= 2", "tk", "matplotlib >= 3.5", "opencv-python >= 4.5", "shapely >= 2", "Pillow >= 9.5"],
+    install_requires=["labelme", "pandas >= 2", "tk", "matplotlib >= 3.5", "opencv-python >= 4.5", "shapely >= 2", "Pillow >= 9.5"],
     extras_require={
         "dev": ["pytest>=7.0", "twine>=4.0.2"]
     },
-    python_requires=">=3.10",
+    python_requires=">=3.6",
     entry_points={"console_scripts": ["rolloutmethod=src.main:main"]}
 
 

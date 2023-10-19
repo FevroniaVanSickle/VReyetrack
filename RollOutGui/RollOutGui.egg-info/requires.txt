@@ -1,4 +1,4 @@
-labelme>=5.3
+labelme
 pandas>=2
 tk
 matplotlib>=3.5
