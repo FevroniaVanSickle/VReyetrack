@@ -448,7 +448,8 @@ class TadaPage(tk.Frame):
         #make sure correct Data folder is chosen 
         if (self.dataFolderPath.__contains__("Data")):
             print("passing data folder to process.py at line 450")
-            subprocess.run(["python3", "src/process.py", self.dataFolderPath])
+            print (os.getcwd())
+            subprocess.run(["python3", "RollOutGui/src/process.py", self.dataFolderPath])
         else:
             print("Please select the data folder ")
             # sys.exit(1)
