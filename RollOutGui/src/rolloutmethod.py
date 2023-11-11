@@ -21,7 +21,7 @@ class RollOutMethodInterface(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
 
         #set window configurations
-        self.geometry("700x550+430+200")
+        self.geometry("750x550+430+200")
         self.title("Roll Out Method Gui")
 
         #create container for windows on top of the root
@@ -58,29 +58,59 @@ class HomePage(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
+        
         self.title_label = ttk.Label(self, text="Home Page")
-        self.title_label.grid(row=0, column=0, pady=20, padx=10, sticky='w')
 
-        welcomeLabel = tk.Label(self, text="Welcome to the Graphic User Interface for the Roll Out Method!", font=('Times New Roman', 27))
-        welcomeLabel.grid(row=1, column=0, pady=20, padx=10, sticky='w')
+         # welcome text and file instructions
+        welcomeLabel = tk.Label(self, text="Welcome to the Graphic User Interface for the Roll Out Method!", font=(
+            'Times New Roman', 25))
+        # welcomeLabel.place(x=20, y=20)
+        welcomeLabel.pack(anchor='w', pady = 20, padx=10)
 
-        overviewLabel1 = tk.Label(self, text="This GUI interface will walk you through three steps needed to determine attentional hitting points on 360 video stimuli:", font=('Times New Roman', 15))
-        overviewLabel1.grid(row=2, column=0, pady=20, padx=10, sticky='w')
+        overviewLabel1 = tk.Label(self, text="This GUI interface will walk you through three steps needed to determine attentional hitting points on 360 video stimuli: ", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel1.pack(anchor='w', pady = 20, padx=10)
+#######
+        overviewLabel2_1 = tk.Label(self, text="1. Creating video stills from your 360 video", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel2_1.pack(anchor='w', padx=10)
 
-        overviewLabel2 = tk.Label(self, text="1. Creating video stills from your 360 video\n2. Determining areas of interest (AOIs) on your video stills at determined intervals\n3. Determining if participants’ attention falls within AOIs at each video still interval", font=('Times New Roman', 15))
-        overviewLabel2.grid(row=3, column=0, pady=20, padx=10, sticky='w')
+        overviewLabel2_2 = tk.Label(self, text="2. Determining areas of interest (AOIs) on your video stills at determined intervals", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel2_2.pack(anchor='w', padx=10)
 
-        overviewLabel3 = tk.Label(self, text="In order to use this program, you will need the following saved on your desktop:", font=('Times New Roman', 15))
-        overviewLabel3.grid(row=4, column=0, pady=20, padx=10, sticky='w')
+        overviewLabel2_3 = tk.Label(self, text="3. Determining if participants’ attention falls within AOIs at each video still interval", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel2_3.pack(anchor='w', padx=10)
 
-        overviewLabel4 = tk.Label(self, text="1. An .mp4 file of your 360 video\n2. An .xml file of raw eye-tracking data* derived from a participant viewing this 360 video", font=('Times New Roman', 15))
-        overviewLabel4.grid(row=5, column=0, pady=20, padx=10, sticky='w')
+        overviewLabel3 = tk.Label(self, text="In order to use this program, you will need the following saved on your desktop:", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel3.pack(anchor='w', pady = 20, padx=10)
 
-        overviewLabel5 = tk.Label(self, text="* our program is currently only compatible with output from Tobii Pro but soon to be compatible with Varjo", font=('Times New Roman', 15))
-        overviewLabel5.grid(row=6, column=0, pady=20, padx=10, sticky='w')
+        overviewLabel4_1 = tk.Label(self, text="1. An .mp4 file of your 360 video", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel4_1.pack(anchor='w', padx=10)
+########
+        overviewLabel4_2 = tk.Label(self, text="2. An .xml file of raw eye-tracking data* derived from a participant viewing this 360 video", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel4_2.pack(anchor='w', padx=10)
 
+        overviewLabel5 = tk.Label(self, text="* our program is currently only compatible with output from Tobii Pro but soon to be compatible with Varjo", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        overviewLabel5.pack(anchor='w', pady = 20, padx=10)
+
+        #goes to next page
         self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(CalibrationPage))
-        self.nextButton.grid(row=7, column=0, pady=20, padx=10, sticky='w')
+        self.nextButton.pack(anchor='w', pady = 20, padx=10)
+
 
 
 # second page
