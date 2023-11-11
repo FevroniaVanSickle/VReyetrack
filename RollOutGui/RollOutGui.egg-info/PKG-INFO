@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: RollOutGui
+Version: 0.0.1
+Summary: A graphical user interface that analyzes eye movements per video frame
+Home-page: https://github.com/thebearslab/VReyetrack
+Author: FevroniaVanSickle
+License: MIT
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+License-File: LICENSE.txt
