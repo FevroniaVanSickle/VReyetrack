@@ -29,12 +29,12 @@ class RollOutMethodInterface(tk.Tk):
         container.pack(side="top", fill="both", expand=True)
 
         self.frames = {}
-        for F in (HomePage, CalibrationPage, CreateLabelsPage, TadaPage):
+        for F in (   Welcome_Page,  Step_1_Page, Step_2_Page, Step_3_Page):
             frame = F(container, self, newVideoPath=newVideoPath, newDataPath=newDataPath)
             self.frames[F] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame(HomePage)
+        self.show_frame(   Welcome_Page)
 
         # ask user if they want to exit the application
         self.protocol("WM_DELETE_WINDOW", self.onClosing)
@@ -49,7 +49,7 @@ class RollOutMethodInterface(tk.Tk):
             self.destroy()
 
 # first page
-class HomePage(tk.Frame):
+class    Welcome_Page(tk.Frame):
     def __init__(self, parent, controller, newVideoPath, newDataPath):
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -102,19 +102,18 @@ class HomePage(tk.Frame):
         # nextLabel.place(x=20, y=200)
         overviewLabel4_2.pack(anchor='w', padx=10)
 
+        #goes to next page
+        self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame( Step_1_Page))
+        self.nextButton.pack(anchor='w', pady = 20, padx=10)
+
         overviewLabel5 = tk.Label(self, text="* our program is currently only compatible with output from Tobii Pro but soon to be compatible with Varjo", font=(
             'Times New Roman', 15),)
         # nextLabel.place(x=20, y=200)
         overviewLabel5.pack(anchor='w', pady = 20, padx=10)
 
-        #goes to next page
-        self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(CalibrationPage))
-        self.nextButton.pack(anchor='w', pady = 20, padx=10)
-
-
 
 # second page
-class CalibrationPage(tk.Frame):
+class  Step_1_Page(tk.Frame):
     def __init__(self, parent, controller, newVideoPath, newDataPath):
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -125,67 +124,82 @@ class CalibrationPage(tk.Frame):
     def create_widgets(self):
 
         # welcome text and file instructions
-        choicesLabel = tk.Label(self, text="Video Stills Creation", font=(
-            'Times New Roman', 27))
-        choicesLabel.pack(side='top', anchor='w', pady = 20, padx=10)
+        choicesLabel = tk.Label(self, text="Step 1: Creating Video Stills from your 360 Video", font=(
+            'Times New Roman', 25))
+        choicesLabel.pack(  anchor='w', pady = 20, padx=10)
 
-        instructionLabel1 = tk.Label(self, text="Select your mp4 video file and xml data file from the available directories.", font=(
+        instructionLabel1_vid = tk.Label(self, text="Select your .mp4 video file", font=(
             'Times New Roman', 15))
         # instructionLabel1.place(x=20, y=80)
-        instructionLabel1.pack(side='top', anchor='w', padx=10)
+        instructionLabel1_vid.pack(anchor='w', padx=10)
 
         # SELECT file
         selectFileButton = tk.Button(
             self, text="Select .mp4 File", command=self.selectVideoFile)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton.pack(side='top', anchor='w', pady = 10, padx=10)
+        selectFileButton.pack(anchor='w', padx=10)
+
+        instructionLabel1_file = tk.Label(self, text="Select your .xml raw eye tracking data file", font=(
+            'Times New Roman', 15))
+        # instructionLabel1.place(x=20, y=80)
+        instructionLabel1_file.pack(anchor='w', padx=10)
 
         # SELECT file
         selectFileButton = tk.Button(
             self, text="Select .xml File", command=self.selectXMLFile)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton.pack(side='top', anchor='w', pady = 0, padx=10)
+        selectFileButton.pack(anchor='w', padx=10)
 
         #choices
-        instructionLabel2 = tk.Label(self, text="Would you like your images cropped or flipped?", font=(
+        instructionLabel2 = tk.Label(self, text="Determine if you would like your video file cropped* or flipped", font=(
             'Times New Roman', 15))
-        instructionLabel2.pack(side='top', anchor='w', padx=10)
+        instructionLabel2.pack(anchor='w', padx=10)
 
         #crop check box
         self.checkState1 = tk.IntVar()
         self.check1 = tk.Checkbutton(self, text="crop video", font=(
             'Times New Roman', 16), variable=self.checkState1)
-        self.check1.pack(padx=10, pady=10)
+        self.check1.pack(anchor='w', padx=10)
 
         #flip check box 
         self.checkState2 = tk.IntVar()
         self.check2 = tk.Checkbutton(self, text="flip video", font=(
             'Times New Roman', 16), variable=self.checkState2)
-        self.check2.pack(pady=10)
+        self.check2.pack(anchor='w', padx=10)
 
         #set interval
-        instructionLabel3 = tk.Label(self, text="Please select the interval you would like to use.", font=(
+        instructionLabel3 = tk.Label(self, text="Select the intervals in seconds at which you would like your video stills to be created", font=(
             'Times New Roman', 15))
-        instructionLabel3.pack(side='top', anchor='w', padx=10)
+        instructionLabel3.pack(anchor='w', padx=10)
         self.interval = tk.DoubleVar()
         spinbox = tk.Spinbox(self, from_=0, to=3, increment=0.5, textvariable=self.interval)
-        spinbox.pack(pady=10)
+        spinbox.pack(anchor='w', padx=10, pady=10)
 
-        nextLabel = tk.Label(self, text="After you have made your selections, press 'Process Video' to create video stills .", font=(
+########
+        processLabel_1 = tk.Label(self, text="Once you click “Process Video” below, your video, video stills, and data will appear in a folder called “EyeTrack”", font=(
             'Times New Roman', 15),)
         # nextLabel.place(x=20, y=200)
-        nextLabel.pack(side='top', anchor='w', pady = 5, padx=10)
+        processLabel_1.pack(anchor='w', padx=10)
 
+        nextLabel_2 = tk.Label(self, text="on your desktop. Please allow up to one minute for the video stills to be processed.", font=(
+            'Times New Roman', 15),)
+        # nextLabel.place(x=20, y=200)
+        nextLabel_2.pack(anchor='w', padx=10)
+
+        #process video button 
         self.processVideoButton = tk.Button(self, text="Process Video", command=self.controlSettings)
-        self.processVideoButton.pack()
-
-        instructionLabel2 = tk.Label(self, text="Your video, data, and stills will appear inside the 'Eyetrack' folder on your desktop. \n Please allow time for the folder to populate.", font=(
-            'Times New Roman', 15))
-        instructionLabel2.pack(side='top', anchor='w', padx=10)
-
+        self.processVideoButton.pack(anchor='w', pady = 5)
         #goes to next page
-        self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(CreateLabelsPage))
-        self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
+        self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(Step_2_Page))
+        self.nextButton.pack(anchor='w', pady = 20, padx=10)
+
+        instructionLabel2_ast_1 = tk.Label(self, text="*cropped video should be selected if your .mp4 video file is represented in stereoscopic format", font=(
+            'Times New Roman', 15))
+        instructionLabel2_ast_1.pack(anchor='w', padx=10)
+
+        instructionLabel2_ast_2 = tk.Label(self, text="(the image is duplicated on both the top and bottom half of the screen)", font=(
+            'Times New Roman', 15))
+        instructionLabel2_ast_2.pack(anchor='w', padx=10)
 
     # select the directory holding the video file
     def selectVideoFile(self):
@@ -318,7 +332,7 @@ class CalibrationPage(tk.Frame):
         self.frames.flipFrames(flipBool)
 
 # third page
-class CreateLabelsPage(tk.Frame):
+class Step_2_Page(tk.Frame):
     def __init__(self, parent, controller, newVideoPath, newDataPath):
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -329,53 +343,80 @@ class CreateLabelsPage(tk.Frame):
     def create_widgets(self):
         
         # welcome text and file instructions
-        choicesLabel = tk.Label(self, text="Create AOIs", font=(
-            'Times New Roman', 27))
-        choicesLabel.pack(side='top', anchor='w', pady = 20, padx=10)
+        choicesLabel = tk.Label(self, text="Step 2: Determining Areas of Interest (AOIs)", font=(
+            'Times New Roman', 25))
+        choicesLabel.pack(  anchor='w', pady = 20, padx=10)
 
-        instructionLabel2 = tk.Label(self, text="Annotate video frames to determine Areas of Interest.", font=(
+        instructionLabel2 = tk.Label(self, text="To determine AOIs, the roll out method uses a program called “labelme” created by Wada (2016)*", font=(
             'Times New Roman', 15))
-        # instructionLabel2.place(x=20, y=180)
-        instructionLabel2.pack(side='top', anchor='w', pady = 20, padx=10)
+        instructionLabel2.pack(anchor='w', padx=10)
 
-        instructionLabel3 = tk.Label(self, text="Save annotated frames to the folder of the frames you want to analyze; choose either 'frames', 'crop', or 'flip'.", font=(
+        instructionLabel2_1 = tk.Label(self, text="To open labelme, click the button below", font=(
             'Times New Roman', 15))
-        # instructionLabel2.place(x=20, y=180)
-        instructionLabel3.pack(side='top', anchor='w', pady = 10, padx=10)
-
-        instructionLabel4 = tk.Label(self, text="Return to this GUI once done annotating.", font=(
-            'Times New Roman', 15))
-        # instructionLabel2.place(x=20, y=180)
-        instructionLabel4.pack(side='top', anchor='w', pady = 10, padx=10)
-
-        instructionLabel5 = tk.Label(self, text="If you accidentally close the GUI, simply navigate back to this page and continue.", font=(
-            'Times New Roman', 15))
-        # instructionLabel2.place(x=20, y=180)
-        instructionLabel5.pack(side='top', anchor='w', pady = 10, padx=10)
-
-        instructionLabel6 = tk.Label(self, text="You do not need to re-annotate your slides.", font=(
-            'Times New Roman', 15))
-        # instructionLabel2.place(x=20, y=180)
-        instructionLabel6.pack(side='top', anchor='w', pady = 10, padx=10)
+        instructionLabel2_1.pack(anchor='w',padx=10)
 
         # start labelling button 
         self.labelMeButton = tk.Button(self, text="Annotate Frames", command=self.startLabelMe)
-        self.labelMeButton.pack(side='top', anchor='w', pady = 20, padx=10)
+        self.labelMeButton.pack(anchor='w', pady = 10, padx=10)
 
-        # go back button 
-        self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(CalibrationPage))
-        self.home_button.pack(side='top', anchor='w', pady = 20, padx=10)
+        instructionLabel3 = tk.Label(self, text="Labelme Instructions:", font=(
+            'Times New Roman', 15))
+        instructionLabel3.pack(anchor='w', padx=10)
+
+        instructionLabel4_1 = tk.Label(self, text="1. Click the “Open Dir” button on the top left of the labelme GUI", font=(
+            'Times New Roman', 15))
+        instructionLabel4_1.pack(  anchor='w', padx=10)
+
+        instructionLabel4_2 = tk.Label(self, text="2. Select the EyeTrack folder", font=(
+            'Times New Roman', 15))
+        instructionLabel4_2.pack(  anchor='w', pady =5, padx=10)
+
+        instructionLabel4_2_a = tk.Label(self, text="   a. Select the “crop” folder if you opted to have your video stills cropped", font=(
+            'Times New Roman', 15))
+        instructionLabel4_2_a.pack(  anchor='w', padx=10)
+
+        instructionLabel4_2_b = tk.Label(self, text="   b. Select the “frames” folder if you did not opt to have your video stills cropped", font=(
+            'Times New Roman', 15))
+        instructionLabel4_2_b.pack(  anchor='w', pady =5, padx=10)
+
+        instructionLabel4_3 = tk.Label(self, text="3. Click “create polygons” on the top of your labelme GUI", font=(
+            'Times New Roman', 15))
+        instructionLabel4_3.pack(  anchor='w', padx=10)
+
+        instructionLabel4_4 = tk.Label(self, text="4. Draw a polygon around the AOI using mouse.When you close the polygon you will be prompted to provide a label", font=(
+            'Times New Roman', 15))
+        instructionLabel4_4.pack(  anchor='w', pady =5, padx=10)
+
+        instructionLabel4_5 = tk.Label(self, text="5. You may determine multiple AOIs on each still", font=(
+            'Times New Roman', 15))
+        instructionLabel4_5.pack(anchor='w', padx=10)
+
+        instructionLabel4_6 = tk.Label(self, text="6. Once you are done determining your AOI(s) press “save” and “next image”\nand repeat until you have annotated all of your video stills ", font=(
+            'Times New Roman', 15))
+        instructionLabel4_6.pack(  anchor='w', pady =5, padx=10)
+
+        instructionLabel5 = tk.Label(self, text="Click “Next” to proceed to Step 3", font=(
+            'Times New Roman', 15))
+        instructionLabel5.pack(  anchor='w', padx=10)
+
+        # # go back button 
+        # self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame( Step_1_Page))
+        # self.home_button.pack(anchor='w', padx=10)
 
         #next button
-        self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(TadaPage))
-        self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
+        self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(Step_3_Page))
+        self.nextButton.pack(anchor='w', padx=10)
+        
+        instructionLabel6 = tk.Label(self, text="*available directly on github at https://github.com/wkentaro/labelme", font=(
+                    'Times New Roman', 15))
+        instructionLabel6.pack(  anchor='w', padx=10)
 
     def startLabelMe(self):
         subprocess.Popen(['labelme'])
 
 
 # fourth page
-class TadaPage(tk.Frame):
+class Step_3_Page(tk.Frame):
     def __init__(self, parent, controller, newVideoPath, newDataPath):
         tk.Frame.__init__(self, parent)
         self.controller = controller
@@ -386,73 +427,82 @@ class TadaPage(tk.Frame):
     def create_widgets(self):
         
         # welcome text and file instructions
-        choicesLabel = tk.Label(self, text="Data Tables and Hitting Points", font=(
-            'Times New Roman', 27))
-        choicesLabel.pack(side='top', anchor='w', pady = 20, padx=10)
-
-        instructionLabel1 = tk.Label(self, text="Select the 'data' directory from within Desktop/Eyetrack", font=(
-            'Times New Roman', 15))
-        # instructionLabel1.place(x=20, y=80)
-        instructionLabel1.pack(side='top', anchor='w', padx=10)
-
+        choicesLabel = tk.Label(self, text="Step 3: Determine participants’ attention within AOIs", font=(
+            'Times New Roman', 25))
+        choicesLabel.pack(  anchor='w', pady = 20, padx=10)
+        
         # SELECT data folder
         selectFileButton1 = tk.Button(
-            self, text="Select data folder", command=self.selectDataFolder)
+            self, text="Determine Data Path", command=self.selectDataFolder)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton1.pack(side='top', anchor='w', pady = 10, padx=10)
+        selectFileButton1.pack(anchor='w', pady = 10, padx=10)
 
-        # SELECT image directory
-        instructionLabel2 = tk.Label(self, text="Select the frames directory containing the frames and annotated frames you want analyzed", font=(
+        instructionLabel1_1 = tk.Label(self, text="Click the button above to determine the data path", font=(
             'Times New Roman', 15))
         # instructionLabel1.place(x=20, y=80)
-        instructionLabel2.pack(side='top', anchor='w', padx=10)
+        instructionLabel1_1.pack(  anchor='w', padx=10)
+
+        instructionLabel1_2 = tk.Label(self, text="then select Desktop -> EyeTrack -> Data and click Choose", font=(
+            'Times New Roman', 15))
+        # instructionLabel1.place(x=20, y=80)
+        instructionLabel1_2.pack(  anchor='w', padx=10)
 
         selectFileButton2 = tk.Button(
-            self, text="Select frames folder", command=self.selectFrameFolder)
+            self, text="Determine AOI Path", command=self.selectFrameFolder)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton2.pack(side='top', anchor='w', pady = 10, padx=10)
+        selectFileButton2.pack(anchor='w', pady = 10, padx=10)
 
-        # # SELECT end image directory
-        # instructionLabel3 = tk.Label(self, text="Select folder to place analyzed photos in", font=(
-        #     'Times New Roman', 15))
-        # # instructionLabel1.place(x=20, y=80)
-        # instructionLabel3.pack(side='top', anchor='w', padx=10)
-
-        # selectFileButton3 = tk.Button(
-        #     self, text="Select image results folder", command=self.selectEndImageFolder)
-        # # selectFileButton.place(x=20, y=120)
-        # selectFileButton3.pack(side='top', anchor='w', pady = 10, padx=10)
-
-        # SELECT 2D hitting points csv table
-        instructionLabel4 = tk.Label(self, text="Select the csv table containing 2D hitting points located within new participant xyz folder", font=(
+        # SELECT image directory
+        instructionLabel2_1 = tk.Label(self, text="Click the button above to determine the AOI path", font=(
             'Times New Roman', 15))
         # instructionLabel1.place(x=20, y=80)
-        instructionLabel4.pack(side='top', anchor='w', padx=10)
+        instructionLabel2_1.pack(  anchor='w', padx=10)
 
+        # SELECT image directory
+        instructionLabel2_2 = tk.Label(self, text="then select Desktop -> EyeTrack -> Frames (or Crop if you cropped your images) and click Choose", font=(
+            'Times New Roman', 15))
+        # instructionLabel1.place(x=20, y=80)
+        instructionLabel2_2.pack(  anchor='w', padx=10)
+        
+         # SELECT 2D hitting points csv table
         selectFileButton4 = tk.Button(
-            self, text="Select 2D hitting points", command=self.selectCSVFile)
+            self, text="Determine Attentional Hitting Points Path", command=self.selectCSVFile)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton4.pack(side='top', anchor='w', pady = 10, padx=10)
+        selectFileButton4.pack(anchor='w', pady = 10, padx=10)
+
+        instructionLabel4_1 = tk.Label(self, text="Click the button above to determine the participants’ Attentional Hitting Points path", font=(
+            'Times New Roman', 15))
+        # instructionLabel1.place(x=20, y=80)
+        instructionLabel4_1.pack(  anchor='w', padx=10)
+
+        instructionLabel4_2 = tk.Label(self, text="then select Desktop -> EyeTrack -> Data -> 001 -> Eye_Data_001_xyz, then the CSV file and click Open", font=(
+            'Times New Roman', 15))
+        # instructionLabel1.place(x=20, y=80)
+        instructionLabel4_2.pack(  anchor='w', padx=10)
 
         #get interval
-        instructionLabel5 = tk.Label(self, text="Which interval did you select for your frames?", font=(
+        instructionLabel5 = tk.Label(self, text="Select the intervals in seconds at which you processed your video stills in Step 1", font=(
             'Times New Roman', 15))
-        instructionLabel5.pack(side='top', anchor='w', padx=10)
+        instructionLabel5.pack(  anchor='w', pady = 5, padx=10)
         self.interval = tk.DoubleVar()
         spinbox = tk.Spinbox(self, from_=0, to=3, increment=0.5, textvariable=self.interval)
-        spinbox.pack(pady=10)
+        spinbox.pack( anchor='w', padx = 10)
 
+        instructionLabel5 = tk.Label(self, text="Click Calculate to Results to determine whether participants’ attentional hitting points fall within specified AOIs.", font=(
+            'Times New Roman', 15))
+        # instructionLabel1.place(x=20, y=80)
+        instructionLabel5.pack(  anchor='w', pady = 10, padx=10)
 
         self.showResultButton = tk.Button(self, text="Calculate results", command=self.giveResults)
-        self.showResultButton.pack(side='top', anchor='w', pady = 20, padx=10)
+        self.showResultButton.pack( anchor='w', padx=10)
 
         # go back button 
-        self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame(CalibrationPage))
-        self.home_button.pack(side='top', anchor='w', pady = 10, padx=10)
+        # self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame( Step_1_Page))
+        # self.home_button.pack(  anchor='w', padx=10)
 
-        #home button
-        self.nextButton = tk.Button(self, text="Home", command=lambda: self.controller.show_frame(HomePage))
-        self.nextButton.pack(side='top', anchor='w', pady = 20, padx=10)
+        # #home button
+        # self.nextButton = tk.Button(self, text="Home", command=lambda: self.controller.show_frame(   Welcome_Page))
+        # self.nextButton.pack(  anchor='w',  padx=10)
 
     # get Data Folder
     def selectDataFolder(self):
