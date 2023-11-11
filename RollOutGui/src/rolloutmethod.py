@@ -62,17 +62,17 @@ class HomePage(tk.Frame):
         self.title_label = ttk.Label(self, text="Home Page")
 
          # welcome text and file instructions
-        welcomeLabel = tk.Label(self, text="Welcome to the Graphic User Interface \n for the Roll Out Method!", font=(
+        welcomeLabel = tk.Label(self, text="Welcome to the Graphic User Interface for the \n Roll Out Method!", font=(
             'Times New Roman', 27))
         # welcomeLabel.place(x=20, y=20)
         welcomeLabel.pack(side='top', anchor='w', pady = 20, padx=10)
 
-        overviewLabel1 = tk.Label(self, text="This GUI interface will walk you through three steps needed to determine \n attentional hitting points on 360 video stimuli: ", font=(
+        overviewLabel1 = tk.Label(self, text="This GUI interface will walk you through three steps needed to determine attentional hitting points on 360 video stimuli: ", font=(
             'Times New Roman', 15),)
         # nextLabel.place(x=20, y=200)
         overviewLabel1.pack(side='top', anchor='w', pady = 20, padx=10)
 
-        overviewLabel2 = tk.Label(self, text="1.Creating video stills from your 360 video \n 2.	Determining areas of interest (AOIs) on your video stills at determined intervals \n 3.	Determining if participants’ attention falls within AOIs at each video still interval", font=(
+        overviewLabel2 = tk.Label(self, text="1. Creating video stills from your 360 video\n2. Determining areas of interest (AOIs) on your video stills at determined intervals\n3. Determining if participants’ attention falls within AOIs at each video still interval", font=(
             'Times New Roman', 15),)
         # nextLabel.place(x=20, y=200)
         overviewLabel2.pack(side='top', anchor='w', pady = 20, padx=10)
@@ -82,7 +82,7 @@ class HomePage(tk.Frame):
         # nextLabel.place(x=20, y=200)
         overviewLabel3.pack(side='top', anchor='w', pady = 20, padx=10)
 
-        overviewLabel4 = tk.Label(self, text="1.	An .mp4 file of your 360 video \n 2.	An .xml file of raw eye-tracking data* derived from a participant viewing this 360 video", font=(
+        overviewLabel4 = tk.Label(self, text="1. An .mp4 file of your 360 video\n2. An .xml file of raw eye-tracking data* derived from a participant viewing this 360 video", font=(
             'Times New Roman', 15),)
         # nextLabel.place(x=20, y=200)
         overviewLabel4.pack(side='top', anchor='w', pady = 20, padx=10)
