@@ -399,9 +399,9 @@ class Step_2_Page(tk.Frame):
             'Times New Roman', 15))
         instructionLabel5.pack(  anchor='w', padx=10)
 
-        # # go back button 
-        # self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame( Step_1_Page))
-        # self.home_button.pack(anchor='w', padx=10)
+        # go back button 
+        self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame( Step_1_Page))
+        self.home_button.pack(anchor='w', padx=10)
 
         #next button
         self.nextButton = tk.Button(self, text="Next", command=lambda: self.controller.show_frame(Step_3_Page))
@@ -497,12 +497,12 @@ class Step_3_Page(tk.Frame):
         self.showResultButton.pack( anchor='w', padx=10)
 
         # go back button 
-        # self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame( Step_1_Page))
-        # self.home_button.pack(  anchor='w', padx=10)
+        self.home_button = tk.Button(self, text="Go back", command=lambda: self.controller.show_frame( Step_1_Page))
+        self.home_button.pack(  anchor='w', padx=10)
 
-        # #home button
-        # self.nextButton = tk.Button(self, text="Home", command=lambda: self.controller.show_frame(   Welcome_Page))
-        # self.nextButton.pack(  anchor='w',  padx=10)
+        #home button
+        self.nextButton = tk.Button(self, text="Home", command=lambda: self.controller.show_frame(   Welcome_Page))
+        self.nextButton.pack(  anchor='w',  padx=10)
 
     # get Data Folder
     def selectDataFolder(self):
