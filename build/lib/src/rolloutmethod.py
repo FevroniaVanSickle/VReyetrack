@@ -132,12 +132,12 @@ class  Step_1_Page(tk.Frame):
             'Times New Roman', 15))
         # instructionLabel1.place(x=20, y=80)
         instructionLabel1_vid.pack(anchor='w', padx=10)
-
+        
         # SELECT file
-        selectFileButton = tk.Button(
+        selectVideoButton = tk.Button(
             self, text="Select .mp4 File", command=self.selectVideoFile)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton.pack(anchor='w', padx=10)
+        selectVideoButton.pack(anchor='w', padx=10)
 
         instructionLabel1_file = tk.Label(self, text="Select your .xml raw eye tracking data file", font=(
             'Times New Roman', 15))
@@ -172,8 +172,10 @@ class  Step_1_Page(tk.Frame):
             'Times New Roman', 15))
         instructionLabel3.pack(anchor='w', padx=10)
         self.interval = tk.DoubleVar()
-        spinbox = tk.Spinbox(self, from_=0, to=3, increment=0.5, textvariable=self.interval)
-        spinbox.pack(anchor='w', padx=10, pady=10)
+        validate_cmd = self.register(self.validate_interval)
+        spinbox = tk.Spinbox(self, from_=0.5, to=3, increment=0.5, textvariable=self.interval,
+                             validate='key', validatecommand=(validate_cmd, '%P'))
+        spinbox.pack(anchor='w', padx=10)
 
 ########
         processLabel_1 = tk.Label(self, text="Once you click “Process Video” below, your video, video stills, and data will appear in a folder called “EyeTrack”", font=(
@@ -214,10 +216,7 @@ class  Step_1_Page(tk.Frame):
             title='Open a file', initialdir='/', filetypes=filetypes)
 
         # show what was selected
-        messagebox.showinfo(
-            title='Selected File',
-            message=filePath
-        )
+        self.selectVideoButton.config(text=os.path.basename(filePath))
         self.path = filePath
 
         self.count = 0
@@ -269,10 +268,7 @@ class  Step_1_Page(tk.Frame):
             title='Open a file', initialdir='/', filetypes=filetypes)
 
         # show what was selected
-        messagebox.showinfo(
-            title='Selected File',
-            message=filePath
-        )
+        self.selectFileButton.config(text=os.path.basename(filePath))
         self.path = filePath
 
         # place dataFile into Eyetrack/data Folder
@@ -430,7 +426,7 @@ class Step_3_Page(tk.Frame):
         choicesLabel = tk.Label(self, text="Step 3: Determine participants’ attention within AOIs", font=(
             'Times New Roman', 25))
         choicesLabel.pack(  anchor='w', pady = 20, padx=10)
-        
+
         # SELECT data folder
         selectFileButton1 = tk.Button(
             self, text="Determine Data Path", command=self.selectDataFolder)
@@ -465,10 +461,10 @@ class Step_3_Page(tk.Frame):
         instructionLabel2_2.pack(  anchor='w', padx=10)
         
          # SELECT 2D hitting points csv table
-        selectFileButton4 = tk.Button(
+        selectFileButton3 = tk.Button(
             self, text="Determine Attentional Hitting Points Path", command=self.selectCSVFile)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton4.pack(anchor='w', pady = 10, padx=10)
+        selectFileButton3.pack(anchor='w', pady = 10, padx=10)
 
         instructionLabel4_1 = tk.Label(self, text="Click the button above to determine the participants’ Attentional Hitting Points path", font=(
             'Times New Roman', 15))
@@ -485,8 +481,10 @@ class Step_3_Page(tk.Frame):
             'Times New Roman', 15))
         instructionLabel5.pack(  anchor='w', pady = 5, padx=10)
         self.interval = tk.DoubleVar()
-        spinbox = tk.Spinbox(self, from_=0, to=3, increment=0.5, textvariable=self.interval)
-        spinbox.pack( anchor='w', padx = 10)
+        validate_cmd = self.register(self.validate_interval)
+        spinbox = tk.Spinbox(self, from_=0.5, to=3, increment=0.5, textvariable=self.interval,
+                             validate='key', validatecommand=(validate_cmd, '%P'))
+        spinbox.pack(anchor='w', padx=10)
 
         instructionLabel5 = tk.Label(self, text="Click Calculate to Results to determine whether participants’ attentional hitting points fall within specified AOIs.", font=(
             'Times New Roman', 15))
@@ -501,21 +499,19 @@ class Step_3_Page(tk.Frame):
         self.home_button.pack(  anchor='w', padx=10)
 
         #home button
-        self.nextButton = tk.Button(self, text="Home", command=lambda: self.controller.show_frame(   Welcome_Page))
+        self.nextButton = tk.Button(self, text="Start Over", command=lambda: self.controller.show_frame(   Welcome_Page))
         self.nextButton.pack(  anchor='w',  padx=10)
 
     # get Data Folder
     def selectDataFolder(self):
 
         # open file dialog to select videoFile
-        filepath = filedialog.askdirectory()
+        filePath = filedialog.askdirectory()
 
         # show what was selected
-        messagebox.showinfo(
-            title='Selected folder',
-            message=filepath
-        )
-        self.dataFolderPath = filepath
+        self.selectFileButton1.config(text=os.path.basename(filePath))
+    
+        self.dataFolderPath = filePath
 
         #make sure correct Data folder is chosen 
         if (self.dataFolderPath.__contains__("Data")):
@@ -531,33 +527,29 @@ class Step_3_Page(tk.Frame):
     def selectFrameFolder(self):
 
         # open file dialog to select videoFile
-        filepath = filedialog.askdirectory()
+        filePath = filedialog.askdirectory()
 
         # show what was selected
-        messagebox.showinfo(
-            title='Selected folder',
-            message=filepath
-        )
+        self.selectFileButton2.config(text=os.path.basename(filePath))
 
-        self.framesPath = filepath
+        self.framesPath = filePath
         print(self.framesPath)
     
+
     #get EndImage folder
     def selectEndImageFolder(self):
 
         # open file dialog to select videoFile
-        filepath = filedialog.askdirectory()
+        filePath = filedialog.askdirectory()
 
         # show what was selected
-        messagebox.showinfo(
-            title='Selected folder',
-            message=filepath
-        )
+        self.selectFileButton3.config(text=os.path.basename(filePath))
 
-        self.endImagePath = filepath
+        self.endImagePath = filePath
         print(self.endImagePath)
 
-    # select the directory holding the video file
+
+    # select the csv file to give results
     def selectCSVFile(self):
 
         filetypes = (
@@ -566,16 +558,13 @@ class Step_3_Page(tk.Frame):
         )
 
         # open file dialog to select videoFile
-        filepath = filedialog.askopenfilename(
+        filePath = filedialog.askopenfilename(
             title='Open a file', initialdir='/', filetypes=filetypes)
 
         # show what was selected
-        messagebox.showinfo(
-            title='Selected File',
-            message=filepath
-        )
+        self.showResultButton.config(text=os.path.basename(filePath))
 
-        self.csvFilePath = filepath
+        self.csvFilePath = filePath
         print(self.csvFilePath)
         
 
@@ -587,17 +576,8 @@ class Step_3_Page(tk.Frame):
         interval *= 100000
         interval = str(interval)
         
+        #this gets past the loader not knowing things at the first subprocess call
         try:
-        # if (self.csvFilePath.contains("main.py")):
-        #     print("this is the loader hi")
-        
-        # elif (self.framesPath.contains("main.p")):
-        #     print("this is the loader hi")
-        
-        # elif (self.endImagePath.contains("main.py")):
-        #     print("this is the loader hi")
-        # else:
-            #calculate results
             subprocess.run(["python3", "RollOutGui/src/compare_eye_anno.py", interval, self.csvFilePath, self.framesPath])
 
         except:
