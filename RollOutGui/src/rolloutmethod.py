@@ -173,7 +173,7 @@ class  Step_1_Page(tk.Frame):
         instructionLabel3.pack(anchor='w', padx=10)
         self.interval = tk.DoubleVar()
         validate_cmd = self.register(self.validate_interval)
-        spinbox = tk.Spinbox(self, from_=0.5, to=3, increment=0.5, textvariable=self.interval,
+        spinbox = tk.Spinbox(self, from_=0, to=3, increment=0.5, textvariable=self.interval,
                              validate='key', validatecommand=(validate_cmd, '%P'))
         spinbox.pack(anchor='w', padx=10)
 
@@ -326,6 +326,14 @@ class  Step_1_Page(tk.Frame):
         self.frames.captureAtInterval(interval)
         self.frames.cropFrames(cropBool)
         self.frames.flipFrames(flipBool)
+
+    #validate spinbox input
+    def validate_interval(self, new_value):
+        try:
+            value = float(new_value)
+            return value != 0
+        except ValueError:
+            return False
 
 # third page
 class Step_2_Page(tk.Frame):
@@ -480,9 +488,10 @@ class Step_3_Page(tk.Frame):
         instructionLabel5 = tk.Label(self, text="Select the intervals in seconds at which you processed your video stills in Step 1", font=(
             'Times New Roman', 15))
         instructionLabel5.pack(  anchor='w', pady = 5, padx=10)
+
         self.interval = tk.DoubleVar()
         validate_cmd = self.register(self.validate_interval)
-        spinbox = tk.Spinbox(self, from_=0.5, to=3, increment=0.5, textvariable=self.interval,
+        spinbox = tk.Spinbox(self, from_=0, to=3, increment=0.5, textvariable=self.interval,
                              validate='key', validatecommand=(validate_cmd, '%P'))
         spinbox.pack(anchor='w', padx=10)
 
@@ -567,6 +576,14 @@ class Step_3_Page(tk.Frame):
         self.csvFilePath = filePath
         print(self.csvFilePath)
         
+    #validate spinbox input
+    def validate_interval(self, new_value):
+        try:
+            value = float(new_value)
+            return value != 0
+        except ValueError:
+            return False
+
 
     def giveResults(self):
         print("this is giveResults")
