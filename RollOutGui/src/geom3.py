@@ -304,4 +304,4 @@ if __name__ == '__main__':
     assert xRay.pos(1.0) == Point3(1, 0, 0)
     assert xRay.pos(2) == Point3(2, 0, 0)
 
-    print ("Passed all tests")
+    # print ("Passed all tests")

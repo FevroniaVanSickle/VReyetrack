@@ -242,17 +242,17 @@ class  Step_1_Page(tk.Frame):
 
         # save path to videoFile
         oldVideoPath = self.path
-        print(oldVideoPath)
+        # print(oldVideoPath)
         # get video file name from path
         videoFileName = os.path.basename(oldVideoPath)
-        print(videoFileName)
+        # print(videoFileName)
 
         #define directory path 
         self.folderPath = os.path.join(homeDir, "Desktop", folder)
 
         newVideoPath = os.path.join(self.folderPath, videoFileName)
 
-        print(newVideoPath)
+        # print(newVideoPath)
         shutil.move(oldVideoPath, newVideoPath)
 
     # select the directory holding the video file
@@ -292,13 +292,13 @@ class  Step_1_Page(tk.Frame):
 
         # save path to videoFile
         oldDataPath = self.path
-        print(oldDataPath)
+        # print(oldDataPath)
         # get video file name from path
         dataFileName = os.path.basename(oldDataPath)
-        print(dataFileName)
+        # print(dataFileName)
 
         newDataPath = os.path.join(homeDir, "Desktop/Eyetrack", dataFolder + "/" + participantFolder,  destinationFolder, dataFileName)
-        print(newDataPath)
+        # print(newDataPath)
         shutil.move(oldDataPath, newDataPath)
 
     #control settings

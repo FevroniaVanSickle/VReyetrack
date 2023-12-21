@@ -128,15 +128,16 @@ def transform_to_equirectangular(point, geo_w, geo_h, color):
 
     return [geo_x_px, geo_y_px]
 
-print("before catch sys.argv:", sys.argv)
+# print("before catch sys.argv:", sys.argv)
 
 if len(sys.argv) < 2:
-    print("loader doesn't have access to correct destination")
+    # print("loader doesn't have access to correct destination")
+    print("loading")
     # sys.exit(1)
 else:    
-    print("after catch sys.argv:", sys.argv)
+    # print("after catch sys.argv:", sys.argv)
     dirname = sys.argv[1] # PUF WSU DATA see readme folder structure, dir should contain 001 002
-    print ("the folder has the name %s" % (dirname))
+    # print ("the folder has the name %s" % (dirname))
 
     ############################
     tobii_folder_name = 'Eye_Data'
@@ -151,7 +152,7 @@ else:
                     tobii_path = dirname  + '/' + par_id + '/' + single_file
                     # create folder for coordinate on 2d image
                     os.mkdir(tobii_path + '_XYZ')
-                    print('current in : '+tobii_path)
+                    # print('current in : '+tobii_path)
                     file_list = os.listdir(tobii_path)
                     # print('This folder has ', file_list, ' files.')
 
@@ -178,7 +179,7 @@ else:
 
                             f.close()
 
-print('All finish')
+# print('All finish')
    
 # tobii_folder_name = 'Eye_Data'
 # tobii_path = ''
