@@ -173,7 +173,7 @@ class  Step_1_Page(tk.Frame):
         instructionLabel3.pack(anchor='w', padx=10)
         self.interval = tk.DoubleVar()
         validate_cmd = self.register(self.validate_interval)
-        spinbox = tk.Spinbox(self, from_=0, to=3, increment=0.5, textvariable=self.interval,
+        spinbox = tk.Spinbox(self, from_=0.5, to=3, increment=0.5, textvariable=self.interval,
                              validate='key', validatecommand=(validate_cmd, '%P'))
         spinbox.pack(anchor='w', padx=10)
 
@@ -328,12 +328,12 @@ class  Step_1_Page(tk.Frame):
         self.frames.flipFrames(flipBool)
 
     #validate spinbox input
-    def validate_interval(self, new_value):
-        try:
-            value = float(new_value)
-            return value != 0
-        except ValueError:
-            return False
+    # def validate_interval(self, new_value):
+    #     try:
+    #         value = float(new_value)
+    #         return value != 0
+    #     except ValueError:
+    #         return False
 
 # third page
 class Step_2_Page(tk.Frame):
@@ -491,7 +491,7 @@ class Step_3_Page(tk.Frame):
 
         self.interval = tk.DoubleVar()
         validate_cmd = self.register(self.validate_interval)
-        spinbox = tk.Spinbox(self, from_=0, to=3, increment=0.5, textvariable=self.interval,
+        spinbox = tk.Spinbox(self, from_=0.5, to=3, increment=0.5, textvariable=self.interval,
                              validate='key', validatecommand=(validate_cmd, '%P'))
         spinbox.pack(anchor='w', padx=10)
 
@@ -524,8 +524,7 @@ class Step_3_Page(tk.Frame):
 
         #make sure correct Data folder is chosen 
         if (self.dataFolderPath.__contains__("Data")):
-            print("passing data folder to process.py at line 450")
-            print (os.getcwd())
+            # print (os.getcwd())
             subprocess.run(["python3", "RollOutGui/src/process.py", self.dataFolderPath])
         else:
             print("Please select the data folder ")
@@ -542,7 +541,7 @@ class Step_3_Page(tk.Frame):
         self.selectFileButton2.config(text=os.path.basename(filePath))
 
         self.framesPath = filePath
-        print(self.framesPath)
+        # print(self.framesPath)
     
 
     #get EndImage folder
@@ -555,7 +554,7 @@ class Step_3_Page(tk.Frame):
         self.selectFileButton3.config(text=os.path.basename(filePath))
 
         self.endImagePath = filePath
-        print(self.endImagePath)
+        # print(self.endImagePath)
 
 
     # select the csv file to give results
@@ -574,19 +573,18 @@ class Step_3_Page(tk.Frame):
         self.showResultButton.config(text=os.path.basename(filePath))
 
         self.csvFilePath = filePath
-        print(self.csvFilePath)
+        # print(self.csvFilePath)
         
     #validate spinbox input
-    def validate_interval(self, new_value):
-        try:
-            value = float(new_value)
-            return value != 0
-        except ValueError:
-            return False
+    # def validate_interval(self, new_value):
+    #     try:
+    #         value = float(new_value)
+    #         return value != 0
+    #     except ValueError:
+    #         return False
 
 
     def giveResults(self):
-        print("this is giveResults")
 
         #interval
         interval = self.interval.get()
