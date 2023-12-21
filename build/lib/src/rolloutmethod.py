@@ -328,12 +328,12 @@ class  Step_1_Page(tk.Frame):
         self.frames.flipFrames(flipBool)
 
     #validate spinbox input
-    # def validate_interval(self, new_value):
-    #     try:
-    #         value = float(new_value)
-    #         return value != 0
-    #     except ValueError:
-    #         return False
+    def validate_interval(self, new_value):
+        try:
+            value = float(new_value)
+            return value != 0
+        except ValueError:
+            return False
 
 # third page
 class Step_2_Page(tk.Frame):
@@ -576,12 +576,12 @@ class Step_3_Page(tk.Frame):
         # print(self.csvFilePath)
         
     #validate spinbox input
-    # def validate_interval(self, new_value):
-    #     try:
-    #         value = float(new_value)
-    #         return value != 0
-    #     except ValueError:
-    #         return False
+    def validate_interval(self, new_value):
+        try:
+            value = float(new_value)
+            return value != 0
+        except ValueError:
+            return False
 
 
     def giveResults(self):
