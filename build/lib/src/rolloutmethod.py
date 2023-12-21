@@ -134,10 +134,10 @@ class  Step_1_Page(tk.Frame):
         instructionLabel1_vid.pack(anchor='w', padx=10)
         
         # SELECT file
-        selectVideoButton = tk.Button(
+        self.selectVideoButton = tk.Button(
             self, text="Select .mp4 File", command=self.selectVideoFile)
         # selectFileButton.place(x=20, y=120)
-        selectVideoButton.pack(anchor='w', padx=10)
+        self.selectVideoButton.pack(anchor='w', padx=10)
 
         instructionLabel1_file = tk.Label(self, text="Select your .xml raw eye tracking data file", font=(
             'Times New Roman', 15))
@@ -145,10 +145,10 @@ class  Step_1_Page(tk.Frame):
         instructionLabel1_file.pack(anchor='w', padx=10)
 
         # SELECT file
-        selectFileButton = tk.Button(
+        self.selectXMLFileButton = tk.Button(
             self, text="Select .xml File", command=self.selectXMLFile)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton.pack(anchor='w', padx=10)
+        self.selectXMLFileButton.pack(anchor='w', padx=10)
 
         #choices
         instructionLabel2 = tk.Label(self, text="Determine if you would like your video file cropped* or flipped", font=(
@@ -268,7 +268,7 @@ class  Step_1_Page(tk.Frame):
             title='Open a file', initialdir='/', filetypes=filetypes)
 
         # show what was selected
-        self.selectFileButton.config(text=os.path.basename(filePath))
+        self.selectXMLFileButton.config(text=os.path.basename(filePath))
         self.path = filePath
 
         # place dataFile into Eyetrack/data Folder
@@ -436,10 +436,10 @@ class Step_3_Page(tk.Frame):
         choicesLabel.pack(  anchor='w', pady = 20, padx=10)
 
         # SELECT data folder
-        selectFileButton1 = tk.Button(
+        self.selectFileButton1 = tk.Button(
             self, text="Determine Data Path", command=self.selectDataFolder)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton1.pack(anchor='w', pady = 10, padx=10)
+        self.selectFileButton1.pack(anchor='w', pady = 10, padx=10)
 
         instructionLabel1_1 = tk.Label(self, text="Click the button above to determine the data path", font=(
             'Times New Roman', 15))
@@ -451,10 +451,10 @@ class Step_3_Page(tk.Frame):
         # instructionLabel1.place(x=20, y=80)
         instructionLabel1_2.pack(  anchor='w', padx=10)
 
-        selectFileButton2 = tk.Button(
+        self.selectFileButton2 = tk.Button(
             self, text="Determine AOI Path", command=self.selectFrameFolder)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton2.pack(anchor='w', pady = 10, padx=10)
+        self.selectFileButton2.pack(anchor='w', pady = 10, padx=10)
 
         # SELECT image directory
         instructionLabel2_1 = tk.Label(self, text="Click the button above to determine the AOI path", font=(
@@ -469,10 +469,10 @@ class Step_3_Page(tk.Frame):
         instructionLabel2_2.pack(  anchor='w', padx=10)
         
          # SELECT 2D hitting points csv table
-        selectFileButton3 = tk.Button(
+        self.selectFileButton3 = tk.Button(
             self, text="Determine Attentional Hitting Points Path", command=self.selectCSVFile)
         # selectFileButton.place(x=20, y=120)
-        selectFileButton3.pack(anchor='w', pady = 10, padx=10)
+        self.selectFileButton3.pack(anchor='w', pady = 10, padx=10)
 
         instructionLabel4_1 = tk.Label(self, text="Click the button above to determine the participants’ Attentional Hitting Points path", font=(
             'Times New Roman', 15))
