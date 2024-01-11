@@ -495,12 +495,12 @@ class Step_3_Page(tk.Frame):
                              validate='key', validatecommand=(validate_cmd, '%P'))
         spinbox.pack(anchor='w', padx=10)
 
-        instructionLabel5 = tk.Label(self, text="Click Calculate to Results to determine whether participants’ attentional hitting points fall within specified AOIs.", font=(
+        instructionLabel5 = tk.Label(self, text="Click Calculate to determine whether participants’ attentional hitting points fall within specified AOIs.", font=(
             'Times New Roman', 15))
         # instructionLabel1.place(x=20, y=80)
         instructionLabel5.pack(  anchor='w', pady = 10, padx=10)
 
-        self.showResultButton = tk.Button(self, text="Calculate results", command=self.giveResults)
+        self.showResultButton = tk.Button(self, text="Calculate", command=self.giveResults)
         self.showResultButton.pack( anchor='w', padx=10)
 
         # go back button 
@@ -570,7 +570,7 @@ class Step_3_Page(tk.Frame):
             title='Open a file', initialdir='/', filetypes=filetypes)
 
         # show what was selected
-        self.showResultButton.config(text=os.path.basename(filePath))
+        # self.showResultButton.config(text=os.path.basename(filePath))
 
         self.csvFilePath = filePath
         # print(self.csvFilePath)
