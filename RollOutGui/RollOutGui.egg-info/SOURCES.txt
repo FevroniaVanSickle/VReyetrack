@@ -15,4 +15,3 @@ RollOutGui/src/main.py
 RollOutGui/src/process.py
 RollOutGui/src/rolloutmethod.py
 RollOutGui/src/sphere.py
-RollOutGui/test/__init__.py
