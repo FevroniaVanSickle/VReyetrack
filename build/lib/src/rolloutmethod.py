@@ -222,7 +222,7 @@ class  Step_1_Page(tk.Frame):
         self.newEyetrackFolder
 
     # adds new folder to user desktop and places video inside
-    def newEyetrackFolder(self):
+    def newEyetrackFolder(self, count):
 
         # creates new folder
         homeDir = os.path.expanduser('~')
@@ -242,7 +242,6 @@ class  Step_1_Page(tk.Frame):
 
         # get video file name from path
         videoFileName = os.path.basename(oldVideoPath)
-        # print(videoFileName)
 
         #define directory path 
         self.folderPath = os.path.join(homeDir, "Desktop", folder)
