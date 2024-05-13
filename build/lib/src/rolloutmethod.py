@@ -219,36 +219,38 @@ class  Step_1_Page(tk.Frame):
         self.path = filePath
 
         # place videoFile into Eyetrack Folder
-        self.newEyetrackFolder
+        self.newEyetrackFolder(0)
 
     # adds new folder to user desktop and places video inside
     def newEyetrackFolder(self, count):
-
+        
         # creates new folder
         homeDir = os.path.expanduser('~')
-        folder = "EyeTrack"
+        base_folder = "EyeTrack"
+        
+        # Create a unique folder name based on count
+        folder = base_folder if count == 0 else f"{base_folder}{count}"
+        
+        # Full path for the new folder on the desktop
+        folder_path = os.path.join(homeDir, "Desktop", folder)
 
-        # creates an Eyetrack folder in the desktop
+        # Attempt to create the directory
         try:
-            os.makedirs(os.path.join(homeDir, "Desktop", folder))
-        except:
-            # breaks from try/except
-            folder = "Eyetrack" + str(count)
-            count += 1
-            self.newEyetrackFolder(count)
+            os.makedirs(folder_path)
+        except FileExistsError:
+            # Folder already exists, increment count and try again
+            return self.newEyetrackFolder(count + 1)
 
-        # save path to videoFile
+        # Save path to video file
         oldVideoPath = self.path
-
-        # get video file name from path
+        
+        # Get video file name from path
         videoFileName = os.path.basename(oldVideoPath)
-
-        #define directory path 
-        self.folderPath = os.path.join(homeDir, "Desktop", folder)
-
-        newVideoPath = os.path.join(self.folderPath, videoFileName)
-
-        # print(newVideoPath)
+        
+        # Define new video path in the new folder
+        newVideoPath = os.path.join(folder_path, videoFileName)
+        
+        # Move the video file to the new folder
         shutil.move(oldVideoPath, newVideoPath)
 
     # select the directory holding the video file
