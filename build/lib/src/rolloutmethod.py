@@ -4,6 +4,7 @@
 # version: 5/13/24
 
 import os
+import sys
 import shutil
 import tkinter as tk
 from tkinter import ttk
@@ -219,60 +220,31 @@ class  Step_1_Page(tk.Frame):
         self.path = filePath
 
         # place videoFile into Eyetrack Folder
-        self.newEyetrackFolder(0)
+        self.newEyetrackFolder()
 
     # adds new folder to user desktop and places video inside
-    def newEyetrackFolder(self, count):
-        
+    # still needs work, will revisit over summer to prevent duplicate files
+    def newEyetrackFolder(self):
         # creates new folder
         homeDir = os.path.expanduser('~')
-        base_folder = "EyeTrack"
-        
-        # Create a unique folder name based on count
-        folder = base_folder if count == 0 else f"{base_folder}{count}"
-        
-        # Full path for the new folder on the desktop
-        folder_path = os.path.join(homeDir, "Desktop", folder)
-
-        # Attempt to create the directory
+        folder = "EyeTrack"
+        # creates an Eyetrack folder in the desktop
         try:
-            os.makedirs(folder_path)
+            os.makedirs(os.path.join(homeDir, "Desktop", folder))
         except FileExistsError:
-            # Folder already exists, increment count and try again
-            return self.newEyetrackFolder(count + 1)
-
-        # Save path to video file
+           print('Duplicate Folders Are Not Allowed. Please Rename The Folder that Is Not Being Used.', file=sys.stderr)
+        # save path to videoFile
         oldVideoPath = self.path
-        
-        # Get video file name from path
+        # get video file name from path
         videoFileName = os.path.basename(oldVideoPath)
-        
-        # Define new video path in the new folder
-        newVideoPath = os.path.join(folder_path, videoFileName)
-        
-        # Move the video file to the new folder
+    
+        #define directory path 
+        self.folderPath = os.path.join(homeDir, "Desktop", folder)
+
+        newVideoPath = os.path.join(self.folderPath, videoFileName)
+        # print(newVideoPath)
         shutil.move(oldVideoPath, newVideoPath)
 
-    # select the directory holding the video file
-    def selectXMLFile(self):
-
-        filetypes = (
-            ('video files', '*.xml'),
-            ('All files', '*.*')
-        )
-
-        # open file dialog to select videoFile
-        filePath = filedialog.askopenfilename(
-            title='Open a file', initialdir='/', filetypes=filetypes)
-
-        # show what was selected
-        self.selectXMLFileButton.config(text=os.path.basename(filePath))
-        self.path = filePath
-
-        # place dataFile into Eyetrack/data Folder
-        self.newDataFolder()
-
-    # adds new folder to Eyetrack folder and places dataFile inside
     def newDataFolder(self):
 
         # creates new folder
