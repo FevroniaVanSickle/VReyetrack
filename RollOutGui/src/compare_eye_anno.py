@@ -1,18 +1,3 @@
-################################################
-## 2. analyze hitting points
-## get data of which object they are looking at
-##
-## we need:
-## 1. eye tracking data file end with csv that we
-##    previously got(only has timestamp and 2d
-##    hitting points
-## 2. folder contains image sequence and json files
-##
-## In our example, we pause the video twice,
-## If you didn't pause the video at all
-## Go to "No Pause" at line 137 and follow the instructions
-################################################
-
 import matplotlib.pyplot as plt
 import csv
 import os
@@ -89,31 +74,23 @@ try:
     interval = sys.argv[1] 
     interval = float(interval)
     interval = int(interval)
-    # print ("the interval is %i" % (interval))
     # datafile is the path of eye tracking file that has 2d hitting points
     datafile = sys.argv[2]
-    # print ("the data file has the name %s" % (datafile))
     # folder path that contains image and json of annotation
     annot_dir_curr = sys.argv[3]
-    # print ("the annot_dir_curr has the name %s" % (annot_dir_curr))
     # folder to generate pics
     pics_folder_path = sys.argv[3]
-    # print ("the pics_folder_path has the name %s" % (pics_folder_path))
 
     # we pause the video from start1 to end1 and start2 to end2
     # if you only pause the video once, just set start2 and end2 to 0
-    # if you didn't pause the video at all, go to "No Pause" at line 137 and follow the instructions
     df = {'start1':1, 'end1':11, 'start2':33.9, 'end2':34.9}
 
     if not os.path.exists(pics_folder_path + '_results'):
         os.makedirs(pics_folder_path + '_results')
-        # print('creating pics folder...')
     arr = os.listdir()
-    # print('list all files in current folder: ', pics_folder_path)
 
 
     # read timestamp and hitting point csv file
-    # print('open eye tracking data file '+datafile+"...")
     time_eye_dict = {}
     f = open(datafile, 'r', encoding="utf-8")
     reader = csv.reader(f)
@@ -126,7 +103,6 @@ try:
     poly_file_names = os.listdir(annot_dir_curr)
     poly_json_file_names = include_to_list(poly_file_names, 'json')
     poly_json_file_names.sort()
-    # print('open image sequence folder ' + annot_dir_curr+"...")
 
 
     result_scene_dict = {'timestamp':[], 'image':[]}
@@ -224,9 +200,6 @@ try:
     # print(result_scene_dict)
     curr_df = pd.DataFrame(result_scene_dict)
     curr_df.to_csv(datafile+'_result.csv', sep=',', encoding='utf-8')
-
-
-    # print('finish')
 
 except:
     print("loading")

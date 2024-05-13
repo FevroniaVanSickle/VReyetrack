@@ -6,7 +6,6 @@ class processVideo():
     def __init__(self, videoPath, interval):
         self.filenamepath = videoPath
         self.interval = interval
-        # print(self.filenamepath)
 
     # saves new folder "frames" to filenamepath
     def setOutputPath(self):
@@ -14,11 +13,10 @@ class processVideo():
         filenamepath = self.filenamepath 
         video_file_list = os.listdir(filenamepath)
         videoname = ''
-        # print(video_file_list)
+
         for f in video_file_list:
             if 'mp4' in f:
                 videoname = filenamepath + '/' + f 
-
         self.vidcap = cv2.VideoCapture(videoname)
 
         self.framename = 'frames'
@@ -26,7 +24,6 @@ class processVideo():
         self.output_path = self.dirname + '/' + self.framename + '/'
 
         os.makedirs(self.output_path)
-        # print(self.output_path)
 
 
     def getFrame(self, sec):
@@ -49,7 +46,6 @@ class processVideo():
         frameRate = interval
         frameRate = float(frameRate)
         sec = 0.0
-        # frameRate = 0.5  # //it will capture image in each 0.5 second
         self.count = 0
         success = self.getFrame(sec)
         while success:
@@ -64,13 +60,11 @@ class processVideo():
 
         if cropBool == True:
             framedirname = self.dirname + '/' + self.framename
-            # print("the script has the name %s" % (framedirname))
             file_list = os.listdir(framedirname)
 
             output_path = self.dirname + '/' + 'crop' + '/'
 
             os.makedirs(output_path)
-            # print(file_list)
             for img_name in file_list:
 
                 if 'jpg' in img_name:
@@ -104,13 +98,11 @@ class processVideo():
 
         if flipBool == True:
             flipdirname = self.dirname + '/' + 'crop'
-            # print("the script has the name %s" % (flipdirname))
             file_list = os.listdir(flipdirname)
 
             output_path = self.dirname + '/' + 'flip' + '/'
 
             os.makedirs(output_path)
-            # print(file_list)
             for image_path in file_list:
 
                 if 'jpg' in self.img_name:

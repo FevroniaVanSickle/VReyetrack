@@ -242,7 +242,7 @@ class  Step_1_Page(tk.Frame):
 
         # save path to videoFile
         oldVideoPath = self.path
-        # print(oldVideoPath)
+
         # get video file name from path
         videoFileName = os.path.basename(oldVideoPath)
         # print(videoFileName)
@@ -292,13 +292,13 @@ class  Step_1_Page(tk.Frame):
 
         # save path to videoFile
         oldDataPath = self.path
-        # print(oldDataPath)
+
         # get video file name from path
         dataFileName = os.path.basename(oldDataPath)
-        # print(dataFileName)
+
 
         newDataPath = os.path.join(homeDir, "Desktop/Eyetrack", dataFolder + "/" + participantFolder,  destinationFolder, dataFileName)
-        # print(newDataPath)
+
         shutil.move(oldDataPath, newDataPath)
 
     #control settings
@@ -541,7 +541,7 @@ class Step_3_Page(tk.Frame):
         self.selectFileButton2.config(text=os.path.basename(filePath))
 
         self.framesPath = filePath
-        # print(self.framesPath)
+
     
 
     #get EndImage folder
@@ -554,7 +554,7 @@ class Step_3_Page(tk.Frame):
         self.selectFileButton3.config(text=os.path.basename(filePath))
 
         self.endImagePath = filePath
-        # print(self.endImagePath)
+
 
 
     # select the csv file to give results
@@ -573,7 +573,7 @@ class Step_3_Page(tk.Frame):
         # self.showResultButton.config(text=os.path.basename(filePath))
 
         self.csvFilePath = filePath
-        # print(self.csvFilePath)
+
         
     #validate spinbox input
     def validate_interval(self, new_value):

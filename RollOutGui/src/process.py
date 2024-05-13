@@ -10,7 +10,7 @@ import xml.etree.ElementTree as ET
 import math
 from src.sphere import *
 # geom3 adopted from https://github.com/phire/Python-Ray-tracer
-# from geom3 import Vector3, Point3, Ray3, dot, unit
+from geom3 import Vector3, Point3, Ray3, dot, unit
 from src.geom3 import * 
 from math import sqrt
 import numpy as np
@@ -96,7 +96,7 @@ def get_hit_point_draw(combined_ray, linecolor):
     hitpoint = sphere.intersect(ray)
 
     #check if hitting point is on sphere surface
-    # check_point_on_sphere(0, 0, 0, hitpoint, 1)
+    check_point_on_sphere(0, 0, 0, hitpoint, 1)
 
     # convert unity coordinate to python coordinate
     unity_to_python_point(start)
@@ -104,8 +104,6 @@ def get_hit_point_draw(combined_ray, linecolor):
     unity_to_python_point(hitpoint)
 
     return hitpoint
-
-
 
 
 # transforms a point on sphere to a point in equirectangular
@@ -128,18 +126,11 @@ def transform_to_equirectangular(point, geo_w, geo_h, color):
 
     return [geo_x_px, geo_y_px]
 
-# print("before catch sys.argv:", sys.argv)
-
 if len(sys.argv) < 2:
-    # print("loader doesn't have access to correct destination")
     print("loading")
-    # sys.exit(1)
 else:    
-    # print("after catch sys.argv:", sys.argv)
     dirname = sys.argv[1] # PUF WSU DATA see readme folder structure, dir should contain 001 002
-    # print ("the folder has the name %s" % (dirname))
-
-    ############################
+   
     tobii_folder_name = 'Eye_Data'
     tobii_path = ''
     participants_files = os.listdir(dirname)
@@ -152,9 +143,7 @@ else:
                     tobii_path = dirname  + '/' + par_id + '/' + single_file
                     # create folder for coordinate on 2d image
                     os.mkdir(tobii_path + '_XYZ')
-                    # print('current in : '+tobii_path)
                     file_list = os.listdir(tobii_path)
-                    # print('This folder has ', file_list, ' files.')
 
                     for file_name in file_list:
                         if 'xml' in file_name:
@@ -174,7 +163,8 @@ else:
                                         for m in range(3):
                                             combined_ray[m] = str_list[m]
                                         hitpoint_2d = get_hit_point_draw(combined_ray, 'g')
-                                        projPoint_w = transform_to_equirectangular(hitpoint_2d, 3840, 1080, 'g')
+                                        # hard coded for provided video sample 
+                                        projPoint_w = transform_to_equirectangular(hitpoint_2d, 3840, 2160, 'g')
                                         writer.writerow([timestamp, str(projPoint_w[0]), str(projPoint_w[1])])
 
                             f.close()
