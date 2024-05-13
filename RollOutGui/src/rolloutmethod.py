@@ -5,7 +5,6 @@
 
 import os
 import shutil
-import sys
 import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
