@@ -437,50 +437,41 @@ class Step_3_Page(tk.Frame):
         # SELECT data folder
         self.selectFileButton1 = tk.Button(
             self, text="Determine Data Path", command=self.selectDataFolder)
-        # selectFileButton.place(x=20, y=120)
         self.selectFileButton1.pack(anchor='w', pady = 10, padx=10)
 
         instructionLabel1_1 = tk.Label(self, text="Click the button above to determine the data path", font=(
             'Times New Roman', 15))
-        # instructionLabel1.place(x=20, y=80)
         instructionLabel1_1.pack(  anchor='w', padx=10)
 
         instructionLabel1_2 = tk.Label(self, text="then select Desktop -> EyeTrack -> Data and click Choose", font=(
             'Times New Roman', 15))
-        # instructionLabel1.place(x=20, y=80)
         instructionLabel1_2.pack(  anchor='w', padx=10)
 
         self.selectFileButton2 = tk.Button(
             self, text="Determine AOI Path", command=self.selectFrameFolder)
-        # selectFileButton.place(x=20, y=120)
         self.selectFileButton2.pack(anchor='w', pady = 10, padx=10)
 
         # SELECT image directory
         instructionLabel2_1 = tk.Label(self, text="Click the button above to determine the AOI path", font=(
             'Times New Roman', 15))
-        # instructionLabel1.place(x=20, y=80)
         instructionLabel2_1.pack(  anchor='w', padx=10)
 
         # SELECT image directory
         instructionLabel2_2 = tk.Label(self, text="then select Desktop -> EyeTrack -> Frames (or Crop if you cropped your images) and click Choose", font=(
             'Times New Roman', 15))
-        # instructionLabel1.place(x=20, y=80)
         instructionLabel2_2.pack(  anchor='w', padx=10)
         
          # SELECT 2D hitting points csv table
         self.selectFileButton3 = tk.Button(
             self, text="Determine Attentional Hitting Points Path", command=self.selectCSVFile)
-        # selectFileButton.place(x=20, y=120)
         self.selectFileButton3.pack(anchor='w', pady = 10, padx=10)
 
         instructionLabel4_1 = tk.Label(self, text="Click the button above to determine the participants’ Attentional Hitting Points path", font=(
             'Times New Roman', 15))
-        # instructionLabel1.place(x=20, y=80)
         instructionLabel4_1.pack(  anchor='w', padx=10)
 
         instructionLabel4_2 = tk.Label(self, text="then select Desktop -> EyeTrack -> Data -> 001 -> Eye_Data_001_xyz, then the CSV file and click Open", font=(
             'Times New Roman', 15))
-        # instructionLabel1.place(x=20, y=80)
         instructionLabel4_2.pack(  anchor='w', padx=10)
 
         #get interval
@@ -496,7 +487,6 @@ class Step_3_Page(tk.Frame):
 
         instructionLabel5 = tk.Label(self, text="Click Calculate to determine whether participants’ attentional hitting points fall within specified AOIs.", font=(
             'Times New Roman', 15))
-        # instructionLabel1.place(x=20, y=80)
         instructionLabel5.pack(  anchor='w', pady = 10, padx=10)
 
         self.showResultButton = tk.Button(self, text="Calculate", command=self.giveResults)
@@ -567,7 +557,7 @@ class Step_3_Page(tk.Frame):
             title='Open a file', initialdir='/', filetypes=filetypes)
 
         # show what was selected
-        self.showResultButton.config(text=os.path.basename(filePath))
+        # self.showResultButton.config(text=os.path.basename(filePath))
 
         self.csvFilePath = filePath
 

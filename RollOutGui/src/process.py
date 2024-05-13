@@ -145,8 +145,8 @@ else:
                                         for m in range(3):
                                             combined_ray[m] = str_list[m]
                                         hitpoint_2d = get_hit_point_draw(combined_ray, 'g')
-                                        # hard coded for provided video sample 
-                                        projPoint_w = transform_to_equirectangular(hitpoint_2d, 3840, 2160, 'g')
+                                        # hard coded for provided video sample. Height must be *.5 if cropped 
+                                        projPoint_w = transform_to_equirectangular(hitpoint_2d, 3840, 1080, 'g')
                                         writer.writerow([timestamp, str(projPoint_w[0]), str(projPoint_w[1])])
 
                             f.close()
