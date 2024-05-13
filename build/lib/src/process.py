@@ -21,21 +21,6 @@ from mpl_toolkits.mplot3d import Axes3D # <--- This is important for 3d plotting
 from PIL import Image
 import csv
 
-
-#check if point is on surface of sphere
-def check_point_on_sphere(cx, cy, cz, point, r):
-
-    x1 = math.pow((point[0] - cx), 2)
-    y1 = math.pow((point[1] - cy), 2)
-    z1 = math.pow((point[2] - cz), 2)
-
-    c = (x1 + y1 + z1) == math.pow(r, 2)
-    if c == True:
-        print("point: ", point, " lies on sphere: ", cx, cy, cz)
-    else:
-        print("point: ", point, " does not lies on sphere!!: ", cx, cy, cz, ", diff: ", (x1 + y1 + z1 - math.pow(r, 2)))
-    return c
-
 '''
 let's get the hitting point by pose, camera rotation and gazeRay
 
@@ -94,9 +79,6 @@ def get_hit_point_draw(combined_ray, linecolor):
     sphere = Sphere(Point3(0,0,0), 1)
     ray = Ray3(Point3(start[0], start[1], start[2]), Vector3(dir[0], dir[1], dir[2]))
     hitpoint = sphere.intersect(ray)
-
-    #check if hitting point is on sphere surface
-    check_point_on_sphere(0, 0, 0, hitpoint, 1)
 
     # convert unity coordinate to python coordinate
     unity_to_python_point(start)

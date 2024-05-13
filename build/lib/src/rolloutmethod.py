@@ -1,7 +1,7 @@
 # moves and calibrates .mp4 video according to user specifications
 # goal: eye tracking analysis
 # author: Fevronia Van Sickle
-# version: 9/13/23
+# version: 5/13/24
 
 import os
 import shutil
@@ -521,13 +521,11 @@ class Step_3_Page(tk.Frame):
     
         self.dataFolderPath = filePath
 
-        #make sure correct Data folder is chosen 
+        #make sure correct folder is chosen 
         if (self.dataFolderPath.__contains__("Data")):
-            # print (os.getcwd())
             subprocess.run(["python3", "RollOutGui/src/process.py", self.dataFolderPath])
         else:
             print("Please select the data folder ")
-            # sys.exit(1)
         
 
     # get Frame Folder
@@ -569,7 +567,7 @@ class Step_3_Page(tk.Frame):
             title='Open a file', initialdir='/', filetypes=filetypes)
 
         # show what was selected
-        # self.showResultButton.config(text=os.path.basename(filePath))
+        self.showResultButton.config(text=os.path.basename(filePath))
 
         self.csvFilePath = filePath
 
