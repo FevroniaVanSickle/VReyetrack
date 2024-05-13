@@ -227,14 +227,15 @@ class  Step_1_Page(tk.Frame):
         # creates new folder
         homeDir = os.path.expanduser('~')
         folder = "EyeTrack"
-        basePath = os.path.join(homeDir, "Desktop", folder)
-        self.path = basePath
-        num = 1
+
         # creates an Eyetrack folder in the desktop
-        while os.path.exists(self.path):
-            self.path = basePath + '_%d' % (num)
-            num += 1
-        os.makedirs(self.path)
+        try:
+            os.makedirs(os.path.join(homeDir, "Desktop", folder))
+        except:
+            # breaks from try/except
+            folder = "Eyetrack" + str(count)
+            count += 1
+            self.newEyetrackFolder(count)
 
         # save path to videoFile
         oldVideoPath = self.path
