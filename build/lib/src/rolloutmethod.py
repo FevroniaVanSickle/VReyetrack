@@ -218,26 +218,23 @@ class  Step_1_Page(tk.Frame):
         self.selectVideoButton.config(text=os.path.basename(filePath))
         self.path = filePath
 
-        self.count = 0
         # place videoFile into Eyetrack Folder
-        self.newEyetrackFolder(self.count)
+        self.newEyetrackFolder
 
     # adds new folder to user desktop and places video inside
-    def newEyetrackFolder(self, count):
+    def newEyetrackFolder(self):
 
         # creates new folder
         homeDir = os.path.expanduser('~')
         folder = "EyeTrack"
-
+        basePath = os.path.join(homeDir, "Desktop", folder)
+        self.path = basePath
+        num = 1
         # creates an Eyetrack folder in the desktop
-        try:
-            os.makedirs(os.path.join(homeDir, "Desktop", folder))
-        except:
-            # breaks from try/except
-            folder = "Eyetrack" + str(count)
-            count += 1
-            self.newEyetrackFolder(count)
-
+        while os.path.exists(self.path):
+            self.path = basePath + '_%d' % (num)
+            num += 1
+        os.makedirs(self.path)
 
         # save path to videoFile
         oldVideoPath = self.path
