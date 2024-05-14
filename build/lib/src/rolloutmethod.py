@@ -130,24 +130,20 @@ class  Step_1_Page(tk.Frame):
 
         instructionLabel1_vid = tk.Label(self, text="Select your .mp4 video file", font=(
             'Times New Roman', 15))
-        # instructionLabel1.place(x=20, y=80)
         instructionLabel1_vid.pack(anchor='w', padx=10)
         
         # SELECT file
         self.selectVideoButton = tk.Button(
             self, text="Select .mp4 File", command=self.selectVideoFile)
-        # selectFileButton.place(x=20, y=120)
         self.selectVideoButton.pack(anchor='w', padx=10)
 
         instructionLabel1_file = tk.Label(self, text="Select your .xml raw eye tracking data file", font=(
             'Times New Roman', 15))
-        # instructionLabel1.place(x=20, y=80)
         instructionLabel1_file.pack(anchor='w', padx=10)
 
         # SELECT file
         self.selectXMLFileButton = tk.Button(
             self, text="Select .xml File", command=self.selectXMLFile)
-        # selectFileButton.place(x=20, y=120)
         self.selectXMLFileButton.pack(anchor='w', padx=10)
 
         #choices
@@ -232,7 +228,7 @@ class  Step_1_Page(tk.Frame):
         try:
             os.makedirs(os.path.join(homeDir, "Desktop", folder))
         except FileExistsError:
-           print('Duplicate Folders Are Not Allowed. Please Rename The Folder that Is Not Being Used.', file=sys.stderr)
+           print('Duplicate Folders Are Not Allowed. Please Rename The Folder that Is Not In Use.', file=sys.stderr)
         # save path to videoFile
         oldVideoPath = self.path
         # get video file name from path
@@ -244,6 +240,25 @@ class  Step_1_Page(tk.Frame):
         newVideoPath = os.path.join(self.folderPath, videoFileName)
         # print(newVideoPath)
         shutil.move(oldVideoPath, newVideoPath)
+
+        # select the directory holding the video file
+    def selectXMLFile(self):
+
+        filetypes = (
+            ('video files', '*.xml'),
+            ('All files', '*.*')
+        )
+
+        # open file dialog to select videoFile
+        filePath = filedialog.askopenfilename(
+            title='Open a file', initialdir='/', filetypes=filetypes)
+
+        # show what was selected
+        self.selectXMLFileButton.config(text=os.path.basename(filePath))
+        self.path = filePath
+
+        # place dataFile into Eyetrack/data Folder
+        self.newDataFolder()
 
     def newDataFolder(self):
 
